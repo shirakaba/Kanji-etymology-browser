@@ -1,2 +1,5 @@
-*.DS_Store
-003.png
+.DS_Store
+*.png
+!001.png
+!002.png
+!003.png
