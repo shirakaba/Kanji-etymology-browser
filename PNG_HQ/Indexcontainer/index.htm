@@ -1,33 +1,29 @@
 <html>
 
 <head>
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+
 <meta charset="utf-8"/>
 <style>
-#content, html, body {
-    height: 100%;
-    overflow: hidden;
+body {
+	overflow-x: hidden;
 }
-#left {
-    float: left;
-    width: 128px;
-    background: white;
-    height: 100%;
-    overflow: auto;
+.maincontainer {
+	    height: 100%;
+	    /*width: 100%;*/
+    overflow-y: hidden;
+    overflow-x: hidden;
 }
-#center {
-    float: left;
-    width: 647px;
-    background: white;
-    height: 100%;
-    overflow: auto;
-    padding: 0;
+.sidebar {
+	    height: 100%;
+    overflow-y: scroll;
+    overflow-x: hidden;
 }
-#right {
-    float: left;
-    width: 647px;
-    background: gray;
-    height: 100%;
-    overflow: auto;
+.comparand {
+	height: 100%;
+    overflow-y: scroll;
+    overflow-x: hidden;
 }
 <!--table
 span
@@ -66,15 +62,15 @@ td
 </head>
 
 <body link=blue vlink=purple>
-<div id="content">
-  <div id="left">
+<div id="content" class="maincontainer row">
+  <div id="left" class="sidebar col-xs-2">
 <table border=0 cellpadding=0 cellspacing=0 width=110 style='border-collapse:
  collapse;table-layout:fixed;class:xl65'>
  <tr>
 	<td>Kanji</td>
 	<td>Left</td>
 	<td>Right</td>
-</tr>
+	</tr>
  <tr>
 	<td>一</td>
 	<td><span onclick="changecImg('../001.png')">1</span></td>
@@ -9802,12 +9798,14 @@ td
 </tr>
 </table>
 </div>
-<div id="center">
-<img src="../001.png" id="cimgDisp" width=100%/>
-</div>
-<div id="right">
-<img src="../002.png" id="rimgDisp" width=100%/>
-</div>
+<div class="col-xs-10">
+	<div id="center" class="comparand col-xs-12 col-lg-6">
+	<img src="../001.png" id="cimgDisp" width="100%"/>
+	</div>
+	<div id="right" class="comparand col-lg-6 hidden-md">
+	<img src="../002.png" id="rimgDisp" width="100%"/>
+	</div>
+	</div>
 </div>
 <script>
 function changecImg(cImg) {
