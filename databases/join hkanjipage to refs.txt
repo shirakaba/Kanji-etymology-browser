@@ -1,0 +1,4 @@
+SELECT hkanjipage.hkanji, hkanjipage.page, hkanjiref.ref
+FROM hkanjipage
+INNER JOIN hkanjiref
+ON hkanjipage.hkanji=hkanjiref.hkanji;
