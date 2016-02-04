@@ -1,0 +1,7 @@
+DROP TABLE "henshall_big";
+CREATE TABLE "henshall_big" (hkanji TEXT, reading TEXT, ref INTEGER, definition TEXT);
+INSERT INTO "henshall_big" (hkanji, reading, ref)
+SELECT henshall_ref.hkanji, kanjidic_reading.data, henshall_ref.ref
+FROM henshall_ref
+INNER JOIN kanjidic_reading
+ON henshall_ref.hkanji=kanjidic_reading.id;
