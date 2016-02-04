@@ -40,27 +40,27 @@ console.log('Server running!');
         // req = reqest Object. http.IncomingMessage=クライアントからのリクエストに関する機能
         // res = response Object. http.serverResponse＝サーバーからクライアントへ戻されるレスポンスに関する機能
 function doRequest(req, res) {
-        var number = Math.floor(Math.random()*3);
-        res.writeHead(200, {'Content-Type': 'text/plain'});
-        res.write("Hello");
-        res.end();
-        //fs.readFile('./hello.html', 'UTF-8', function(err, data){
+        // var number = Math.floor(Math.random()*3);
+        // res.writeHead(200, {'Content-Type': 'text/plain'});
+        // res.write("Hello");
+        // res.end();
+        fs.readFile('./index.html', 'UTF-8', function(err, data){
                 //var title=["Page A", "Page B", "Page C"];
                 //var content = ["This is a sample.", "Another contents.", "Last contents"];
                 //var data2 = data.
                         //replace(/@title@/g, title[number]).
                         //replace(/@content@/g, content[number]);
 
-                //res.writeHead(200, {'Content-Type': 'text/html'});
+                res.writeHead(200, {'Content-Type': 'text/html;charset=utf-8'});
                 //header information
                 //  1 arg = status code
                 //  2 arg = header info {'Content-Type': 'text/plain'} = Content-type: ヘッダー情報, text/plain: 値
 
-                //res.write(data);
+                res.write(data);
                 //Body contentsの書き出し
 
-                //res.end();
-//});
+                res.end();
+});
     /*'./hello.html': filePath
      * callBack : err = エラーが発生した時のエラーメッセージ
      *  data= 読み込まれたテキスト。これをresponse.writeで書き出す
