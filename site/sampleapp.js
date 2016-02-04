@@ -28,7 +28,7 @@ server.on('request', doRequest);
         //on: 指定のイベント処理を組み込むためのもの。first arg = イベント名, second arg= 組み込む関数
         //request: http.Server がクライアントからのリクエストを受け取った時に発生するイベント。ブラウザからサーバーにアクセスした時のサーバー側の処理
 
-server.listen(1234);//port number. if changed to 80, port number won't be set
+server.listen(1234, '127.0.0.1');//port number. if changed to 80, port number won't be set
         //listen: サーバーが待ち受け状態になる。クライアントからリクエストがあれば受け取り処理する
         //2nd arg= ホスト名
         //3rd arg= バックログ
@@ -41,23 +41,26 @@ console.log('Server running!');
         // res = response Object. http.serverResponse＝サーバーからクライアントへ戻されるレスポンスに関する機能
 function doRequest(req, res) {
         var number = Math.floor(Math.random()*3);
-        fs.readFile('./hello.html', 'UTF-8', function(err, data){
-                var title=["Page A", "Page B", "Page C"];
-                var content = ["This is a sample.", "Another contents.", "Last contents"];
-                var data2 = data.
-                        replace(/@title@/g, title[number]).
-                        replace(/@content@/g, content[number]);
+        res.writeHead(200, {'Content-Type': 'text/plain'});
+        res.write("Hello");
+        res.end();
+        //fs.readFile('./hello.html', 'UTF-8', function(err, data){
+                //var title=["Page A", "Page B", "Page C"];
+                //var content = ["This is a sample.", "Another contents.", "Last contents"];
+                //var data2 = data.
+                        //replace(/@title@/g, title[number]).
+                        //replace(/@content@/g, content[number]);
 
-                res.writeHead(200, {'Content-Type': 'text/html'});
+                //res.writeHead(200, {'Content-Type': 'text/html'});
                 //header information
                 //  1 arg = status code
                 //  2 arg = header info {'Content-Type': 'text/plain'} = Content-type: ヘッダー情報, text/plain: 値
 
-                res.write(data2);
+                //res.write(data);
                 //Body contentsの書き出し
 
-                res.end();
-});
+                //res.end();
+//});
     /*'./hello.html': filePath
      * callBack : err = エラーが発生した時のエラーメッセージ
      *  data= 読み込まれたテキスト。これをresponse.writeで書き出す
