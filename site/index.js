@@ -1,17 +1,22 @@
 // npm init [makes package.json]
 // npm install express --save
 // npm install sqlite3 --save
+// npm install body-parser --save
 // [installs the sqlite3 module (confusingly also called sqlite3) and adds it into the package.json as a required install]
 // [creates node_modules folder if necessary, then adds express to node_modules folder;]
 // [--save adds the installed dependency to the package.json as a required install for use by 'npm install']
 
 
 // npm install [would install everything specified by the package.json, if a package.json were present]
+var util = require('util'); // a part of node or npm.
 
 var express = require('express'); // this makes the JS VM look for 'express' in the node_modules folder, upon having it run index.js.
 var app = express(); // call the mysterious function that we just stored in the variable 'express'.
 
-var util = require('util');
+var bodyParser = require('body-parser');
+
+app.use(bodyParser.json()); // gives our application support for JSON-formatted PUT or POST requests.
+// This app.use line needs to be early in the .js file so that the request.body object gets created.
 
 var sqlite3 = require('sqlite3').verbose(); // require('sqlite3') is an object with a property, 'verbose()', that is a callable function.
 var db = new sqlite3.Database('../databases/dicts.db', sqlite3.OPEN_READONLY); // gets the file pointer for the database.
@@ -34,6 +39,11 @@ app.get('/', function(request, response){
         var formatted = util.format("<pre>%s</pre>", data);
         response.send(formatted);
     });
+});
+
+// Following this guide: www.expressjs.com/en/guide/routing.html
+app.post('/', function(request, response){
+   response.send('Got a POST request');
 });
 
 
