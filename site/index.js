@@ -34,10 +34,13 @@ app.get('/', function(request, response){
         //console.log(row);
         //Note: can only send one request to webpage at a time (not LIMIT 10), so need a way to collect them into one request for display.
         // and can only have one response.send. Originally had response.send(row);
-        var data = JSON.stringify(row, null, "\t");
+        //var data = JSON.stringify(row, null, "\t");
         // formats the data to be sent as code with <pre>
-        var formatted = util.format("<pre>%s</pre>", data);
-        response.send(formatted);
+        //var formatted = util.format("<pre>%s</pre>", data);
+        //response.send(formatted);
+
+        //response.setHeader('Content-Type', 'application/json');
+        response.json(row);
     });
 });
 
