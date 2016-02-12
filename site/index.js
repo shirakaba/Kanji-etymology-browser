@@ -22,6 +22,8 @@ var sqlite3 = require('sqlite3').verbose(); // require('sqlite3') is an object w
 var db = new sqlite3.Database('../databases/dicts.db', sqlite3.OPEN_READONLY); // gets the file pointer for the database.
 
 // if you browse to the root of the web server (localhost:3000), it'll shout "hello world!".
+// **app.get describes what the user will see (what response is made) when visiting a specified URL.**
+/*
 app.get('/', function(request, response){
 
     db.all("SELECT * FROM henshall_page LIMIT 10", function(err, row){
@@ -42,6 +44,16 @@ app.get('/', function(request, response){
         //response.setHeader('Content-Type', 'application/json');
         response.json(row);
     });
+});
+*/
+
+// mysql not imported. Ref: http://www.hacksparrow.com/using-mysql-with-node-js.html
+mysql.query('SELECT * FROM henshall_page WHERE henshallid = 3',
+function(err, result, fields) {
+  if(err) {throw err;}
+  else {
+    console.log('Logging.');
+  }
 });
 
 // Following this guide: www.expressjs.com/en/guide/routing.html
