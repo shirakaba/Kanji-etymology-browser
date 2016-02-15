@@ -48,12 +48,10 @@ app.get('/', function(request, response){
 */
 
 // mysql not imported. Ref: http://www.hacksparrow.com/using-mysql-with-node-js.html
-mysql.query('SELECT * FROM henshall_page WHERE henshallid = 3',
-function(err, result, fields) {
-  if(err) {throw err;}
-  else {
-    console.log('Logging.');
-  }
+// sqlite3 nodejs documentation: https://github.com/mapbox/node-sqlite3/wiki/API or https://www.npmjs.com/package/sqlite3
+app.get('/', function(request, response){
+db.run("SELECT * FROM henshall_page LIMIT 1");
+response.json(row);
 });
 
 // Following this guide: www.expressjs.com/en/guide/routing.html
