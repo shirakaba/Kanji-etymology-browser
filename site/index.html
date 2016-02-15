@@ -2,10 +2,20 @@
 <html lang="ja">
 <head>
 </head>
+<?php
+echo sqlite_libversion();
+echo "<br>";
+echo phpversion();
+?>
 <body>
+<!-- <?php $database = new SQLite3('db.db');
+?> -->
+
 <h1>Online HTML Editor</h1>
 
 <p>This is an online HTML editor. Try editing this text area - go on! ＝サーバーからクライアントへ戻されるレスポンスに関する機能</p>
+
+<input class="keyword japanese_gothic" name="keyword" id="keyword" value="" autocapitalize="off" autocomplete="off" autocorrect="off" spellcheck="false" placeholder="English, Romaji, Japanese, words or text" data-autoload="false" data-effective-keyword="" lang="ja" type="text">
 
 <p>Here is some <strong>sample bold text</strong>.&nbsp;</p>
 

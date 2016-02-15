@@ -23,7 +23,6 @@ var server = http.createServer();
 
 
 
-
 server.on('request', doRequest);
         //on: 指定のイベント処理を組み込むためのもの。first arg = イベント名, second arg= 組み込む関数
         //request: http.Server がクライアントからのリクエストを受け取った時に発生するイベント。ブラウザからサーバーにアクセスした時のサーバー側の処理
