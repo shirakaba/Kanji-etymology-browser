@@ -6,29 +6,32 @@ body {
 	line-height: 1.7;
 	font-family: "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", "メイリオ", Meiryo, Osaka, "ＭＳ Ｐゴシック", "MS PGothic", sans-serif;  font-style: normal; line-height: 1.3em; font-size: 11pt;
 	width: 100%;
+	min-width: 630px;
 	margin: 0;
 }
 
-header,article, aside, nav{
+header,article, aside, nav, section{
 	display:block;
 }
 
 div
 {
+		display:block;
 		width:95%;
 		min-width: 400px;
 		margin:0 auto;
-		padding:20px;
+		/*padding:20px;*/
 		background: white;
 }
 
 header, article{
 	padding:10px;
 	background: white;
-	margin-bottom:20px;
+	/*margin-bottom:20px;*/
 }
 
 header{
+	padding:50px 20px 20px 20px;
 	background-color:white;
 	color: #FFFF00;
 	/*width:100%;
@@ -39,19 +42,20 @@ div.menu{
 	display:block;
 	margin:auto;
 	width:100%;
+
 }
 nav{
-	width:100%;
-	background: #FFFF00;
+	width:auto;
+	background-color: : #FFFFFF;
 	margin-bottom: 0px;
-	padding-left: 0px;
-	border:1px solid #FFFF00;
+	padding: 0;
 }
 
 article{
-	float:left;
-	width:600px;
-	margin-right:20px;
+	float:center;
+	width:90%;
+	margin:10px 20px 0 auto;
+	/*margin-right:20px;*/
 }
 
 aside{
@@ -70,6 +74,7 @@ ul{
 	list-style:none;
 	margin:0;
 	padding:0;
+			min-width: 480px;
 }
 h1, h2, h3, h4{
 	margin-top:0px;
@@ -85,18 +90,18 @@ h1 a{
 	height:64px;
 	text-indent: -999em;
 }
-
+/*section title*/
 h2{
+	padding-top:10px;
 	padding-left:10px;
 	line-height:1.5;
-	border-left:5px solid black;
 	border-bottom:1px dashed blue;
 }
 
-h3 {
+/*field title*/
+p.field {
 	padding-left: 10px;
 	line-height: 1.5;
-	border-left: 5px solid #e47587;
 	border-bottom: 1px dashed #e47587;
 }
 h4 {
@@ -108,12 +113,17 @@ h4 {
 nav ul {
 	overflow: hidden;
 	list-style: none;
+	margin:0 auto;
+	width:auto;
 }
 nav ul li {
+	box-sizing: border-box;
 	float: left;
-	margin: 0 0;
+	margin: 0;
 	width:20%;
-	max-width: 150px;
+	min-width: 90px;
+	background-color:rgb(255, 222, 51);
+	border-right:1px white solid;
 }
 nav ul li a {
 	display: block;
@@ -122,12 +132,12 @@ nav ul li a {
 	text-decoration: none;
 	font-weight: bold;
 	line-height: 1.5;
-	color: #fff;
+	color: white;
 	text-align: center;
 }
 nav ul li a:hover {
-	color: #48b8a4;
-	background: #fff;
+	color: #fff;/*#48b8a4;*/
+	background:gray;
 }
 aside ul li a {
 	display: block;
@@ -146,13 +156,7 @@ section > section {
 	text-aligh:justify;
 
 }
-section.search{
-	margin:0 0 0 0;
-	padding:0;
-	background: white;
-	border-radius: 0px;
-	-webkit-border-radius: 0px;
-}
+
 section.mainInfo{
 }
 /*clearBox after two column float*/
@@ -167,7 +171,10 @@ section.clear{
 section > section.mainLeft{
 	float:left;
 	width:250px;
+	height:250px;
 	padding:0;
+	margin:0;
+	border:1px black solid;
 }
 p.Kanji{
 	width: 250px;
@@ -181,60 +188,110 @@ p.Kanji{
 }
 /*section.mainRight{*/
 section > section.mainRight{
-	float:right;
-	margin: 0 4% 0 2%;
+	float:none;
+	min-width: 250px;
+	width: auto;
+	margin:0 0 0 260px ;
+	padding: 0;
+	background-color:#ffffff;
+	overflow:hidden;
+	border:none;
+}
+table.main{
+	width:100%;
+	margin:0;
+	border:none;
+}
+table.main tr th, table.main tr td{
+	font-size:24px;
+	border:none;
+	line-height:1.7;
+	min-height:50px;
+	text-align: left;
+	vertical-align:top;
+	white-space: normal;
+}
+table.main tr th{
+	font-weight:bold;
+	min-width:120px;
+}
+
+table.main tr td{
+
 }
 section.subInfo{
-	clear:both;
+
 }
 section.last {
 	margin-bottom: 0px;
 }
-header,section,footer {
-	border-radius: 10px;
-	-webkit-border-radius: 10px;
-}
 
+/* --- Box---*/
 form.search{
-	margin:1px 0 0 0;
+	max-width: 650px;
+	min-width: 450px;
+	margin:5px auto 1px auto;
 	padding:0;
-}
-/* --- Box--- */
-form.search section.search{
-	width:100%;
 	height:50px;
+	border:1px rgb(222, 222, 222) solid;
+	border-radius: 0px;
+	-webkit-border-radius: 0px;
+}
+/* --- Box--- 	margin:0 -52px 0 0;width:100%;float:left;	margin:0 -52px 0 0;*/
+form.search div.search{
+	display:block;
+	width: auto;
+	height:50px;
+
+	margin:0 50px 0 0;
 	padding: 0;
 
 	background-color:#ffffff;
-	border:1px #808080 solid;
+	overflow:hidden;
+	border:none;
 }
 
-/* --- Textbox--- */
+/* --- Textbox--- float:left;
+margin-right:-50px;*/
 form.search input.textBox {
-width: 90%;
-float:left;
-height:50px;
-margin: 0;
-padding: 0;
-background-color: #ffffff;
-border: none;
-color: #000000;
-font-size: 24px;
+	display:block;
+	margin:0 0 0 0;
+	width:100%;
+	height:50px;
+	padding: 0;
+	background-color: #ffffff;
+	border: none;
+	color: #000000;
+	font-size: 24px;
 }
 
 /* ---Button--- */
+form.search div.btn{
+display:block;
+margin:0;
+padding:0;
+width: 50px;
+min-width: 50px;
+height: 50px;
+float:right;
+border:none;
+/*
+vertical-align:top;
+white-space:nowrap;
+
+*/
+}
 form.search input.btn {
 width: 50px;
 height: 50px;
-float:left;
-right:0;
 margin:0;
-padding: 0;
+padding:0;
+display:block;
 background-image: url("src/3062.png");
 background-size: 100% 100%;
 background-repeat: no-repeat;
 background-color: rgb(222, 222, 222);
-border: 1px;/* #c08000 inset;*/
+border:none;
 }
 
 
