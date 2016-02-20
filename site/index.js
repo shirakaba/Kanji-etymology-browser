@@ -26,36 +26,36 @@ var db = new sqlite3.Database('../databases/dicts.db', sqlite3.OPEN_READONLY); /
 // **app.get describes what the user will see (what response is made) when visiting a specified URL.**
 
 //app.get('/', function(request, response){
-//    db.all("SELECT * FROM henshall_page LIMIT 10", function(err, row){
-//    //db.each("SELECT * FROM henshall_page LIMIT 10", function(err, row){
+//    db.all("SELECT * FROM henshall_page LIMIT 10", function(err, entries){
+//    //db.each("SELECT * FROM henshall_page LIMIT 10", function(err, entries){
 //        if(err){
 //            console.error(err);
 //            return;
 //        }
 //        /* to write rows into console
-//         * console.log(row);
+//         * console.log(entries);
 //         * Note: can only send one request to webpage at a time (not LIMIT 10), so need a way to collect them into one
 //         * request for display.
-//         *  and can only have one response.send. Originally had response.send(row);
-//         * var data = JSON.stringify(row, null, "\t");
+//         *  and can only have one response.send. Originally had response.send(entries);
+//         * var data = JSON.stringify(entries, null, "\t");
 //         *  formats the data to be sent as code with <pre>
 //         * var formatted = util.format("<pre>%s</pre>", data);
 //         * response.send(formatted);
 //
 //         * response.setHeader('Content-Type', 'application/json'); */
-//        response.json(row);
+//        response.json(entries);
 //    });
 //});
 
 // Good tutorial if we ditch the HTML button: https://scotch.io/tutorials/use-expressjs-to-get-url-and-post-parameters
 // Creating and handling from start to finish: http://www.sitepoint.com/creating-and-handling-forms-in-node-js/
 /*app.get('/html/kanjisearch', function(request, response){
-        db.each("SELECT * FROM henshall_page LIMIT 10", function(err, row){
+        db.each("SELECT * FROM henshall_page LIMIT 10", function(err, entries){
             if(err){
                 console.error(err);
                 return;
             }
-            response.json(row);
+            response.json(entries);
         });
 });*/
 
@@ -77,7 +77,7 @@ app.post('/', function(request, response){
             }
 
             response.json({
-   				"receivedsearch": request.body.oursearch, "row":row
+   				"receivedsearch": request.body.oursearch, "entries":row
    			});
         });
 });

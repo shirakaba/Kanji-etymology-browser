@@ -11,6 +11,8 @@ angular.module('kanjiApp', [])
         sc.searchresultfn = { text: sc.searchresult };
         sc.search = "中";
         sc.output = "init";
+        sc.currentRow = [];
+
         sc.submit = function() {
 
             $.ajax({
@@ -25,10 +27,10 @@ angular.module('kanjiApp', [])
                 .done(function(data, textStatus, jqXHR) {
                     console.log(data); // logs the incoming data as javascript objects
 //					console.log(JSON.stringify(data, undefined, "  ")); // serialises the JSON to a string to emerge in Chrome console
-//                    that.output = JSON.stringify(data, undefined, "  "); // Trying to get this working.
-//                    that.$apply();
                     sc.$apply(function() {
-                        sc.output = JSON.stringify(data, undefined, "  ");
+                        //sc.output = JSON.stringify(data, undefined, "  ");
+                        sc.output = data.entries[0].hkanji;
+                        sc.currentRow = data.entries;
                     });
                 })
                 .fail(function(jqXHR, textStatus, errorThrown) {
