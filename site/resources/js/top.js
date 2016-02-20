@@ -34,9 +34,10 @@ angular.module('kanjiApp', [])
                         sc.hkanjiPage = sc.hkanjiIndexOnlyResult.page;
 
                         // All output from kanjidicReadingSearch
-                        sc.kanjidicReadingResultZero = data.kanjidicReadingSearch[0];
-                        sc.kanjidicReadingGlyph = sc.kanjidicReadingResultZero.id;
-                        sc.kanjidicReadingReading = sc.kanjidicReadingResultZero.data;
+                        //sc.kanjidicReadingResultZero = data.kanjidicReadingSearch[0];
+                        sc.kanjidicReadingResults = data.kanjidicReadingSearch;
+                        //sc.kanjidicReadingGlyph = sc.kanjidicReadingResultZero.id;
+                        //sc.kanjidicReadingReading = sc.kanjidicReadingResultZero.data;
 
 
                     });

@@ -59,21 +59,24 @@
                         <div class="row">
                             <div class="
                             col-xs-12
-                            col-md-2">
+                            col-md-3">
                                 <span class="massive" ng-bind="hkanjiGlyph"></span>
                             </div>
                             <div class="
                             col-xs-6
-                            col-md-10">
-                                <dl class="dl-horizontal">
+                            col-md-9">
+                                <!-- Was originally dl-horizontal, but reserved too much space by becoming dl-vertical at a non-configurable screen-width. -->
+                                <dl class="dl-vertical">
                                     <dt>Meaning</dt>
                                     <dd ng-bind="hkanjiGlyph"></dd>
-                                    <dt>On</dt>
+                                    <dt>Reading</dt>
                                     <!--<dd ng-bind="hkanjiIndexResult.readings.join(', ') || '&nbsp;'"></dd>-->
                                     <!--Just taking the zeroeth kanjidic reading for now.-->
-                                    <dd ng-bind="kanjidicReadingReading || '&nbsp;'"></dd>
-                                    <dt>Kun</dt>
-                                    <dd ng-bind="hkanjiGlyph || '&nbsp;'"></dd>
+                                    <dd>
+                                        <span ng-repeat="readingIterator in kanjidicReadingResults">
+                                            <span ng-bind="readingIterator.data"></span><span ng-hide="$last">,</span>
+                                        </span>
+                                    </dd>
                                 </dl>
                             </div>
                         </div>
