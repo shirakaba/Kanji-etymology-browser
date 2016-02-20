@@ -2,10 +2,10 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en-GB" xml:lang="en-GB" ng-app="kanjiApp">
     <head>
     <!-- Could get better icons from https://fortawesome.github.io/Font-Awesome/icons/ -->
-    <!-- See http://getbootstrap.com/css/ -->
-    <!-- See http://getbootstrap.com/components for free glyphs -->
-    <!-- Bootstrap latest compiled and minified CSS; 'simplex' theme. -->
+    <!-- See http://getbootstrap.com/css/ . See http://getbootstrap.com/components for free glyphs -->
     <link rel="stylesheet" href="beyondbootstrap.css" type="text/css" />
+    <link rel="stylesheet" href="bootstrap-overrides.css" type="text/css" />
+    <!-- Latest compiled and minified CSS, from http://bootswatch.com/simplex/ -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.6/simplex/bootstrap.min.css" integrity="sha256-rgHoMgF45/9e2kvxfvR0KarwQNw5CRqgxbrthGpeUuc= sha512-CGGV53FSdrXrjyGCNk04p+xuna3CbE33n773A0EEmqtcN8W3NaFsR0vSQcbll5dpSS90d3i2Zh3jFX/j46hzJA==" crossorigin="anonymous">
     <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
     <!--[if lt IE 9]>
@@ -18,7 +18,7 @@
     <title>TOP</title>
 </head>
 <body ng-controller="kanjiListController">
-    <div class="container-fluid">
+    <div class="container-fluid maxdocwidth">
 
         <div class="row">
             <div class="
@@ -47,62 +47,43 @@
             </div>
         </div>
 
-        <!--<div class="row">-->
-            <!--<div ng-repeat="entries in currentRow">-->
-                <!--<span ng-bind="entries.hkanji"></span>-->
-            <!--</div>-->
-        <!--</div>-->
-
-
         <div class="row">
             <!-- Everything is divided into 12 columns; for small screens, the wide col takes the whole screen width,
             and the narrow column must re-flow into a new row. -->
             <div class="
             col-xs-12">
-                <div class="panel panel-default">
+                <!-- 'ng-show' displays this panel only if the search result evaluates as TRUE. -->
+                <div class="panel panel-default" ng-show="currentResult.hkanji">
                     <div class="panel-body">
                         <!-- The panel brings its own padding, so this row is needed to subtract some padding. -->
                         <div class="row">
                             <div class="
                             col-xs-12
-                            col-md-3">
-                                <span class="massive" ng-bind="currentRow[0].hkanji"></span>
+                            col-md-2">
+                                <span class="massive" ng-bind="currentResult.hkanji"></span>
                             </div>
                             <div class="
                             col-xs-6
-                            col-md-9">
+                            col-md-10">
                                 <dl class="dl-horizontal">
-                                    <dt>
-                                        Meaning
-                                    </dt>
-                                    <dd>
-                                        <span ng-bind="currentRow[0].hkanji"></span>
-                                    </dd>
-                                    <dt>
-                                        On
-                                    </dt>
-                                    <dd>
-                                        ...
-                                    </dd>
-                                    <dt>
-                                        Kun
-                                    </dt>
-                                    <dd>
-                                        ...
-                                    </dd>
+                                    <dt>Meaning</dt>
+                                    <dd ng-bind="currentResult.hkanji"></dd>
+                                    <dt>On</dt>
+                                    <dd ng-bind="entries.hkanji || '&nbsp;'"></dd>
+                                    <dt>Kun</dt>
+                                    <dd ng-bind="entries.hkanji || '&nbsp;'"></dd>
                                 </dl>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-
         </div>
 
         <div class="row">
             <div class="
             col-xs-12">
-                <div class="panel panel-default">
+                <div class="panel panel-default" ng-show="currentResult.hkanji">
                     <div class="panel-body">
                         Basic panel example
                     </div>

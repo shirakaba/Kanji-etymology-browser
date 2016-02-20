@@ -10,6 +10,7 @@ angular.module('kanjiApp', [])
         sc.search = "中";
         sc.output = "init";
         sc.currentRow = [];
+        sc.currentResult = undefined;
 
         sc.submit = function() {
 
@@ -27,8 +28,9 @@ angular.module('kanjiApp', [])
 //					console.log(JSON.stringify(data, undefined, "  ")); // serialises the JSON to a string to emerge in Chrome console
                     sc.$apply(function() {
                         //sc.output = JSON.stringify(data, undefined, "  ");
-                        sc.output = data.entries[0].hkanji;
                         sc.currentRow = data.entries;
+                        sc.currentResult = sc.currentRow[0];
+                        sc.output = sc.currentResult.hkanji;
                     });
                 })
                 .fail(function(jqXHR, textStatus, errorThrown) {

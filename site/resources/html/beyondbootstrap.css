@@ -5,3 +5,7 @@
     font-size:18em;
     line-height: 1em;
 }
+
+.maxdocwidth{
+    max-width: 1000px;
+}
