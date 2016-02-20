@@ -1,5 +1,7 @@
 .massive{
     color:black;
+    /*font-family: "MS PGothic", sans-serif;*/
     font-family: "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", "メイリオ", Meiryo, Osaka, "ＭＳ Ｐゴシック", "MS PGothic", sans-serif;
-    font-size:200px;
+    font-size:18em;
+    line-height: 1em;
 }

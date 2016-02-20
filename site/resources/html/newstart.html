@@ -65,12 +65,33 @@
                         <div class="row">
                             <div class="
                             col-xs-12
-                            col-md-4">
+                            col-md-3">
                                 <span class="massive" ng-bind="currentRow[0].hkanji"></span>
                             </div>
                             <div class="
                             col-xs-6
-                            col-md-8">Kanji details</div>
+                            col-md-9">
+                                <dl class="dl-horizontal">
+                                    <dt>
+                                        Meaning
+                                    </dt>
+                                    <dd>
+                                        <span ng-bind="currentRow[0].hkanji"></span>
+                                    </dd>
+                                    <dt>
+                                        On
+                                    </dt>
+                                    <dd>
+                                        ...
+                                    </dd>
+                                    <dt>
+                                        Kun
+                                    </dt>
+                                    <dd>
+                                        ...
+                                    </dd>
+                                </dl>
+                            </div>
                         </div>
                     </div>
                 </div>
