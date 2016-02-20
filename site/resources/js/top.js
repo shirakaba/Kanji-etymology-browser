@@ -19,7 +19,7 @@ angular.module('kanjiApp', [])
                     dataType   : 'json',
                     contentType: 'application/json; charset=UTF-8', // This is the money shot
                     data       : JSON.stringify({
-                        "oursearch": this.search
+                        "kanjiglyph": this.search
                     }),
                     type       : 'POST' // etc
                 })

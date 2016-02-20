@@ -12,7 +12,8 @@ var util = require('util') // a part of node or npm.
 , express = require('express') // this makes the JS VM look for 'express' in the node_modules folder, upon having it run index.js.
 , bodyParser = require('body-parser')
 , sqlite3 = require('sqlite3').verbose() // require('sqlite3') is an object with a property, 'verbose()', that is a callable function.
-, cors = require('cors');
+, cors = require('cors')
+, Promise = require('bluebird');
 
 var app = express(); // call the mysterious function that we just stored in the variable 'express'.
 
@@ -65,19 +66,23 @@ var db = new sqlite3.Database('../databases/dicts.db', sqlite3.OPEN_READONLY); /
 
 // Following this guide: www.expressjs.com/en/guide/routing.html
 app.post('/', function(request, response){
-	console.log(request.body.oursearch);
-  
-	 db.prepare("SELECT * FROM henshall_page WHERE hkanji = (?) LIMIT 10", request.body.oursearch)
+	console.log(request.body.kanjiglyph);
+	db.prepare("SELECT * FROM kanjidic_reading WHERE id = (?) LIMIT 10", request.body.kanjiglyph)
+    .all(function(err, results1) {
+
+    });
+
+    db.prepare("SELECT * FROM henshall_page WHERE hkanji = (?) LIMIT 10", request.body.kanjiglyph)
 	//db.prepare("SELECT * FROM henshall_page LIMIT 10")
-	.all(function(err, row){
-        //db.each("SELECT " + "\"request.body.oursearch\"" + "FROM henshall_page LIMIT 10", function(err, row){
+	.all(function(err, results2){
+        //db.each("SELECT " + "\"request.body.kanjiglyph\"" + "FROM henshall_page LIMIT 10", function(err, row){
             if(err){
                 console.error(err);
                 return;
             }
 
             response.json({
-   				"receivedsearch": request.body.oursearch, "entries":row
+   				"receivedsearch": request.body.kanjiglyph, "entries":results2
    			});
         });
 });
