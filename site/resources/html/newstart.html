@@ -16,7 +16,7 @@
     <script src="../js/top.js"></script>
     <title>TOP</title>
 </head>
-<body>
+<body ng-controller="kanjiListController">
     <div class="container-fluid">
 
         <div class="row">
@@ -26,24 +26,29 @@
                 <li role="presentation" class="active"><a href="#">Home</a></li>
                 <li role="presentation"><a href="#">About</a></li>
                 <li role="presentation"><a href="#">How to</a></li>
-                <li role="presentation"><a href="#">A</a></li>
-                <li role="presentation"><a href="#">A</a></li>
-                <li role="presentation"><a href="#">A</a></li>
+                <li role="presentation"><a href="#">Origins</a></li>
+                <li role="presentation"><a href="#">Site map</a></li>
                 </ul>
             </div>
         </div>
 
         <div class="row">
-            <div class="
-            col-xs-12">
+            <form ng-submit="submit()">
                 <div class="input-group">
-                    <input type="text" class="form-control" placeholder="Search for...">
-                      <span class="input-group-btn">
-                        <button class="btn btn-default" type="button">Go!</button>
-                      </span>
-                </div>
+                    <input type ="text" ng-model="search" name="query" class="form-control">
+                        <span class="input-group-btn">
+                                <button class="btn btn-default" type="submit">Go!</button>
+                        </span>
+                    </div>
+            </form>
+        </div>
+
+        <div class="row">
+            <div ng-repeat="entries in currentRow">
+                <span ng-bind="entries.hkanji"></span>
             </div>
         </div>
+
 
         <!--<div class="row">-->
             <!--&lt;!&ndash; Everything is divided into 12 columns; for small screens, the wide col takes the whole screen width,-->
