@@ -7,7 +7,7 @@ angular.module('kanjiApp', [])
 
     // The '$scope' directive is injected in as a dependency. By mutating the controller's $scope, you can mutate the webpage's view.
     .controller('kanjiListController', ["$scope", function(sc) {
-        sc.search = "中";
+        sc.search = "生";
         sc.output = "init";
         sc.currentRow = [];
         // We declare this one only because our ng-show interacts with it. It's more about being explicit for documentation.
