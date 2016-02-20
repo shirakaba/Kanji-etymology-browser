@@ -260,12 +260,12 @@ border: 1px;/* #c08000 inset;*/
 #footer
 {
 		background-image:url(image/footer.png);
-	/*background-image: linear-gradient(#C6C2A4,  #8F8C76 );*/
+	//background-image: linear-gradient(#C6C2A4,  #8F8C76 );
 	width:100%; min-width:1110px;height: 170px;
 	padding:0;
 	margin: 0;
 	clear: both;
-}
+} */
 
 .contentBox_s{
 	background-color:white;
