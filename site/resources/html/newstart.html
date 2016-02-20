@@ -100,7 +100,9 @@
                             <dd ng-bind="hkanjiIndexOnlyResult"></dd>
                             <!-- Unicode only available 1945 kanji (from Henshall); can be decoded from kanjidic_json (base64), or directly -->
                             <dt>Unicode</dt>
-                            <dd ng-bind="hkanjiIndexOnlyResult"></dd>
+                            <dd ng-bind="hkanjiCodePointOnlyResult.unicode"></dd>
+                            <dt>JIS</dt>
+                            <dd ng-bind="hkanjiCodePointOnlyResult.jis"></dd>
                         </dl>
 
                     </div>

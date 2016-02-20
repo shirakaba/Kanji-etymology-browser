@@ -32,6 +32,7 @@ angular.module('kanjiApp', [])
                         sc.searchQuery = data.receivedsearch;
                         sc.hkanjiPageOnlyResult = data.hkanjiPageSearch || "";
                         sc.hkanjiIndexOnlyResult = data.hkanjiIndexSearch || "";
+                        sc.hkanjiCodePointOnlyResult = data.hkanjiCodePointSearch || "";
                         sc.kanjidicReadingResults = data.kanjidicReadingSearch;
 
                     });

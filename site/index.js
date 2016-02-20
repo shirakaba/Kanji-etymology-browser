@@ -81,7 +81,11 @@ app.post('/', function(request, response){
             //hkanjiIndexSearch
             function(callback) {
                 db.prepare("SELECT ref FROM henshall_ref WHERE hkanji = (?) LIMIT 1", request.body.kanjiglyph)
-                //.get returns a single object, for when only one result is expected.
+                .get(callback);
+            },
+            //hkanjiCodePointSearch
+            function(callback) {
+                db.prepare("SELECT jis,unicode FROM henshall_codepoint WHERE hkanji = (?) LIMIT 1", request.body.kanjiglyph)
                 .get(callback);
             },
             //kanjidicReadingSearch
@@ -99,13 +103,15 @@ app.post('/', function(request, response){
 
             console.log(allResults[0]);
             console.log(allResults[1]);
+            console.log(allResults[2]);
 
             // allResults is an array holding an object (or array of objects) for each function performed.
             response.json({
                 "receivedsearch": request.body.kanjiglyph,
-                "hkanjiPageSearch": allResults[0].page,
-                "hkanjiIndexSearch": allResults[1].ref,
-                "kanjidicReadingSearch": _.map(allResults[2], 'data')
+                "hkanjiPageSearch": (allResults[0] || {}).page,
+                "hkanjiIndexSearch": (allResults[1] || {}).ref,
+                "hkanjiCodePointSearch": allResults[2] || {},
+                "kanjidicReadingSearch": _.map(allResults[3], 'data')
             });
         }
     );
