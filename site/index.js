@@ -75,7 +75,8 @@ app.post('/', function(request, response){
             //hkanjiPageSearch
             function(callback) {
                 db.prepare("SELECT page FROM henshall_page WHERE hkanji = (?) LIMIT 1", request.body.kanjiglyph)
-                //.get returns a single object, for when only one result is expected.
+                // .get returns a single object, for when only one result is expected.
+                // if there are no results, they return 'undefined' and throw an error.
                 .get(callback);
             },
             //hkanjiIndexSearch
@@ -91,7 +92,8 @@ app.post('/', function(request, response){
             //kanjidicReadingSearch
             function(callback) {
                 db.prepare("SELECT data FROM kanjidic_reading WHERE id = (?)", request.body.kanjiglyph)
-                //.all returns an array of objects, for when multiple results may be expected.
+                // .all returns an array of objects, for when multiple results may be expected.
+                // if there are no results, it just returns an empty array of objects.
                 .all(callback);
             }
         ],
@@ -108,9 +110,12 @@ app.post('/', function(request, response){
             // allResults is an array holding an object (or array of objects) for each function performed.
             response.json({
                 "receivedsearch": request.body.kanjiglyph,
+                // '|| {}' returns an empty object if the input is not truthy.
                 "hkanjiPageSearch": (allResults[0] || {}).page,
                 "hkanjiIndexSearch": (allResults[1] || {}).ref,
                 "hkanjiCodePointSearch": allResults[2] || {},
+                // '|| {}' not needed because an empty array is truthy already.
+                // _.map is a lodash function to flatten an array of objects like allResults[3] into one field.
                 "kanjidicReadingSearch": _.map(allResults[3], 'data')
             });
         }

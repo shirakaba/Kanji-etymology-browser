@@ -70,10 +70,11 @@
                                 <!-- Was originally dl-horizontal, but reserved too much space by becoming dl-vertical at a non-configurable screen-width. -->
                                 <dl class="dl-vertical">
                                     <dt>Meaning</dt>
-                                    <dd ng-bind="kanjidicReadingResults[0]"></dd>
+                                    <dd>To-do</dd>
                                     <dt>Reading</dt>
                                     <!--<dd ng-bind="hkanjiIndexResult.readings.join(', ') || '&nbsp;'"></dd>-->
                                     <dd>
+                                        <!-- ng-repeats can be optimised by 'track by $index', which tracks by the index of the data in the array. -->
                                         <span ng-repeat="readingIterator in kanjidicReadingResults track by $index">
                                             <span ng-bind="readingIterator"></span><span ng-hide="$last">,</span>
                                         </span>

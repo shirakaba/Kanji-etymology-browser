@@ -33,6 +33,7 @@ angular.module('kanjiApp', [])
                         sc.hkanjiPageOnlyResult = data.hkanjiPageSearch || "";
                         sc.hkanjiIndexOnlyResult = data.hkanjiIndexSearch || "";
                         sc.hkanjiCodePointOnlyResult = data.hkanjiCodePointSearch || "";
+                        //
                         sc.kanjidicReadingResults = data.kanjidicReadingSearch;
 
                     });
