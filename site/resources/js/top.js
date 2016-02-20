@@ -29,17 +29,10 @@ angular.module('kanjiApp', [])
                     console.log(data); // logs the incoming data as javascript objects
 //					console.log(JSON.stringify(data, undefined, "  ")); // serialises the JSON to a string to emerge in Chrome console
                     sc.$apply(function() {
-                        // All output from hkanjiIndexSearch
-                        sc.hkanjiIndexOnlyResult = data.hkanjiIndexSearch || {};
-                        //sc.hkanjiGlyph = sc.hkanjiIndexOnlyResult.hkanji;
-                        //sc.hkanjiPage = sc.hkanjiIndexOnlyResult.page;
-
-                        // All output from kanjidicReadingSearch
-                        //sc.kanjidicReadingResultZero = data.kanjidicReadingSearch[0];
+                        sc.searchQuery = data.receivedsearch;
+                        sc.hkanjiPageOnlyResult = data.hkanjiPageSearch || "";
+                        sc.hkanjiIndexOnlyResult = data.hkanjiIndexSearch || "";
                         sc.kanjidicReadingResults = data.kanjidicReadingSearch;
-                        //sc.kanjidicReadingGlyph = sc.kanjidicReadingResultZero.id;
-                        //sc.kanjidicReadingReading = sc.kanjidicReadingResultZero.data;
-
 
                     });
                 })

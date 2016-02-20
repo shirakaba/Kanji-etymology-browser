@@ -14,7 +14,8 @@ var util = require('util') // a part of node or npm.
 , sqlite3 = require('sqlite3').verbose() // require('sqlite3') is an object with a property, 'verbose()', that is a callable function.
 , cors = require('cors')
 , Promise = require('bluebird')
-, async = require('async');
+, async = require('async')
+, _ = require('lodash');
 
 var app = express(); // call the mysterious function that we just stored in the variable 'express'.
 
@@ -71,15 +72,21 @@ app.post('/', function(request, response){
 
     async.parallel(
         [
+            //hkanjiPageSearch
+            function(callback) {
+                db.prepare("SELECT page FROM henshall_page WHERE hkanji = (?) LIMIT 1", request.body.kanjiglyph)
+                //.get returns a single object, for when only one result is expected.
+                .get(callback);
+            },
             //hkanjiIndexSearch
             function(callback) {
-                db.prepare("SELECT * FROM henshall_page WHERE hkanji = (?) LIMIT 10", request.body.kanjiglyph)
+                db.prepare("SELECT ref FROM henshall_ref WHERE hkanji = (?) LIMIT 1", request.body.kanjiglyph)
                 //.get returns a single object, for when only one result is expected.
                 .get(callback);
             },
             //kanjidicReadingSearch
             function(callback) {
-                db.prepare("SELECT * FROM kanjidic_reading WHERE id = (?) LIMIT 10", request.body.kanjiglyph)
+                db.prepare("SELECT data FROM kanjidic_reading WHERE id = (?)", request.body.kanjiglyph)
                 //.all returns an array of objects, for when multiple results may be expected.
                 .all(callback);
             }
@@ -96,8 +103,9 @@ app.post('/', function(request, response){
             // allResults is an array holding an object (or array of objects) for each function performed.
             response.json({
                 "receivedsearch": request.body.kanjiglyph,
-                "hkanjiIndexSearch": allResults[0],
-                "kanjidicReadingSearch": allResults[1]
+                "hkanjiPageSearch": allResults[0].page,
+                "hkanjiIndexSearch": allResults[1].ref,
+                "kanjidicReadingSearch": _.map(allResults[2], 'data')
             });
         }
     );

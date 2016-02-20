@@ -59,22 +59,23 @@
                         <div class="row">
                             <div class="
                             col-xs-12
+                            col-sm-4
                             col-md-3">
-                                <span class="massive" ng-bind="kanjidicReadingResults[0].id"></span>
+                                <span class="massive" ng-bind="searchQuery"></span>
                             </div>
                             <div class="
                             col-xs-6
+                            col-sm-8
                             col-md-9">
                                 <!-- Was originally dl-horizontal, but reserved too much space by becoming dl-vertical at a non-configurable screen-width. -->
                                 <dl class="dl-vertical">
                                     <dt>Meaning</dt>
-                                    <dd ng-bind="kanjidicReadingResults[0].id"></dd>
+                                    <dd ng-bind="kanjidicReadingResults[0]"></dd>
                                     <dt>Reading</dt>
                                     <!--<dd ng-bind="hkanjiIndexResult.readings.join(', ') || '&nbsp;'"></dd>-->
-                                    <!--Just taking the zeroeth kanjidic reading for now.-->
                                     <dd>
-                                        <span ng-repeat="readingIterator in kanjidicReadingResults">
-                                            <span ng-bind="readingIterator.data"></span><span ng-hide="$last">,</span>
+                                        <span ng-repeat="readingIterator in kanjidicReadingResults track by $index">
+                                            <span ng-bind="readingIterator"></span><span ng-hide="$last">,</span>
                                         </span>
                                     </dd>
                                 </dl>
@@ -90,7 +91,29 @@
             col-xs-12">
                 <div class="panel panel-default" ng-show="kanjidicReadingResults.length">
                     <div class="panel-body">
-                        Basic panel example
+                        <p class="h4">Extra information</p>
+
+                        <dl class="dl-horizontal">
+                            <dt>Henshall page</dt>
+                            <dd ng-bind="hkanjiPageOnlyResult"></dd>
+                            <dt>Henshall index</dt>
+                            <dd ng-bind="hkanjiIndexOnlyResult"></dd>
+                            <!-- Unicode only available 1945 kanji (from Henshall); can be decoded from kanjidic_json (base64), or directly -->
+                            <dt>Unicode</dt>
+                            <dd ng-bind="hkanjiIndexOnlyResult"></dd>
+                        </dl>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="
+            col-xs-12">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        Copyright information
                     </div>
                 </div>
             </div>
