@@ -10,7 +10,8 @@ angular.module('kanjiApp', [])
         sc.search = "中";
         sc.output = "init";
         sc.currentRow = [];
-        sc.currentResult = undefined;
+        // We declare this one only because our ng-show interacts with it. It's more about being explicit for documentation.
+        //sc.hkanjiIndexOnlyResult = undefined;
 
         sc.submit = function() {
 
@@ -27,10 +28,17 @@ angular.module('kanjiApp', [])
                     console.log(data); // logs the incoming data as javascript objects
 //					console.log(JSON.stringify(data, undefined, "  ")); // serialises the JSON to a string to emerge in Chrome console
                     sc.$apply(function() {
-                        //sc.output = JSON.stringify(data, undefined, "  ");
-                        sc.currentRow = data.entries;
-                        sc.currentResult = sc.currentRow[0];
-                        sc.output = sc.currentResult.hkanji;
+                        // All output from hkanjiIndexSearch
+                        sc.hkanjiIndexOnlyResult = data.hkanjiIndexSearch;
+                        sc.hkanjiGlyph = sc.hkanjiIndexOnlyResult.hkanji;
+                        sc.hkanjiPage = sc.hkanjiIndexOnlyResult.page;
+
+                        // All output from kanjidicReadingSearch
+                        sc.kanjidicReadingResultZero = data.kanjidicReadingSearch[0];
+                        sc.kanjidicReadingGlyph = sc.kanjidicReadingResultZero.id;
+                        sc.kanjidicReadingReading = sc.kanjidicReadingResultZero.data;
+
+
                     });
                 })
                 .fail(function(jqXHR, textStatus, errorThrown) {

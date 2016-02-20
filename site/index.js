@@ -13,7 +13,8 @@ var util = require('util') // a part of node or npm.
 , bodyParser = require('body-parser')
 , sqlite3 = require('sqlite3').verbose() // require('sqlite3') is an object with a property, 'verbose()', that is a callable function.
 , cors = require('cors')
-, Promise = require('bluebird');
+, Promise = require('bluebird')
+, async = require('async');
 
 var app = express(); // call the mysterious function that we just stored in the variable 'express'.
 
@@ -67,24 +68,55 @@ var db = new sqlite3.Database('../databases/dicts.db', sqlite3.OPEN_READONLY); /
 // Following this guide: www.expressjs.com/en/guide/routing.html
 app.post('/', function(request, response){
 	console.log(request.body.kanjiglyph);
-	db.prepare("SELECT * FROM kanjidic_reading WHERE id = (?) LIMIT 10", request.body.kanjiglyph)
-    .all(function(err, results1) {
 
-    });
-
-    db.prepare("SELECT * FROM henshall_page WHERE hkanji = (?) LIMIT 10", request.body.kanjiglyph)
-	//db.prepare("SELECT * FROM henshall_page LIMIT 10")
-	.all(function(err, results2){
-        //db.each("SELECT " + "\"request.body.kanjiglyph\"" + "FROM henshall_page LIMIT 10", function(err, row){
-            if(err){
+    async.parallel(
+        [
+            //hkanjiIndexSearch
+            function(callback) {
+                db.prepare("SELECT * FROM henshall_page WHERE hkanji = (?) LIMIT 10", request.body.kanjiglyph)
+                //.get returns a single object, for when only one result is expected.
+                .get(callback);
+            },
+            //kanjidicReadingSearch
+            function(callback) {
+                db.prepare("SELECT * FROM kanjidic_reading WHERE id = (?) LIMIT 10", request.body.kanjiglyph)
+                //.all returns an array of objects, for when multiple results may be expected.
+                .all(callback);
+            }
+        ],
+        function(errs, allResults) {
+            if(errs){
                 console.error(err);
                 return;
             }
 
+            console.log(allResults[0]);
+            console.log(allResults[1]);
+
+            // allResults is an array holding an object (or array of objects) for each function performed.
             response.json({
-   				"receivedsearch": request.body.kanjiglyph, "entries":results2
-   			});
-        });
+                "receivedsearch": request.body.kanjiglyph,
+                "hkanjiIndexSearch": allResults[0],
+                "kanjidicReadingSearch": allResults[1]
+            });
+        }
+    );
+
+
+
+    //db.prepare("SELECT * FROM henshall_page WHERE hkanji = (?) LIMIT 10", request.body.kanjiglyph)
+	////db.prepare("SELECT * FROM henshall_page LIMIT 10")
+	//.all(function(err, results2){
+     //   //db.each("SELECT " + "\"request.body.kanjiglyph\"" + "FROM henshall_page LIMIT 10", function(err, row){
+     //       if(err){
+     //           console.error(err);
+     //           return;
+     //       }
+    //
+     //       response.json({
+   	//			"receivedsearch": request.body.kanjiglyph, "entries":results2
+   	//		});
+     //   });
 });
 
 
