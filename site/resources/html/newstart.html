@@ -33,14 +33,17 @@
         </div>
 
         <div class="row">
-            <form ng-submit="submit()">
-                <div class="input-group">
-                    <input type ="text" ng-model="search" name="query" class="form-control">
-                        <span class="input-group-btn">
+            <div class="
+            col-xs-12">
+                <form ng-submit="submit()">
+                    <div class="input-group">
+                        <input type ="text" ng-model="search" name="query" class="form-control">
+                            <span class="input-group-btn">
                                 <button class="btn btn-default" type="submit">Go!</button>
-                        </span>
+                            </span>
                     </div>
-            </form>
+                </form>
+            </div>
         </div>
 
         <div class="row">
@@ -50,21 +53,29 @@
         </div>
 
 
-        <!--<div class="row">-->
-            <!--&lt;!&ndash; Everything is divided into 12 columns; for small screens, the wide col takes the whole screen width,-->
-            <!--and the narrow column must re-flow into a new row. &ndash;&gt;-->
-            <!--<div class="-->
-            <!--col-xs-12-->
-            <!--col-md-8">-->
-                <!--<p class="text-uppercase">Here is a wide column, ie. for the big kanji.</p>-->
-                <!--<button type="button" class="btn btn-default btn-md">-->
-                    <!--<span class="glyphicon glyphicon-search" aria-hidden="true"></span> Search-->
-                <!--</button>-->
-            <!--</div>-->
-            <!--<div class="-->
-            <!--col-xs-6-->
-            <!--col-md-4">Here is a narrow column, ie. for details about the kanji.</div>-->
-        <!--</div>-->
+        <div class="row">
+            <!-- Everything is divided into 12 columns; for small screens, the wide col takes the whole screen width,
+            and the narrow column must re-flow into a new row. -->
+            <div class="
+            col-xs-12
+            col-md-4">
+                <p>Big kanji column</p>
+            </div>
+            <div class="
+            col-xs-6
+            col-md-8">Kanji details</div>
+        </div>
+
+        <div class="row">
+            <div class="
+            col-xs-12">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        Basic panel example
+                    </div>
+                </div>
+            </div>
+        </div>
 
     </div>
 </body>
