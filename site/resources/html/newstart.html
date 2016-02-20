@@ -53,14 +53,14 @@
             <div class="
             col-xs-12">
                 <!-- 'ng-show' displays this panel only if the search result evaluates as TRUE. -->
-                <div class="panel panel-default" ng-show="hkanjiGlyph">
+                <div class="panel panel-default" ng-show="kanjidicReadingResults.length">
                     <div class="panel-body">
                         <!-- The panel brings its own padding, so this row is needed to subtract some padding. -->
                         <div class="row">
                             <div class="
                             col-xs-12
                             col-md-3">
-                                <span class="massive" ng-bind="hkanjiGlyph"></span>
+                                <span class="massive" ng-bind="kanjidicReadingResults[0].id"></span>
                             </div>
                             <div class="
                             col-xs-6
@@ -68,7 +68,7 @@
                                 <!-- Was originally dl-horizontal, but reserved too much space by becoming dl-vertical at a non-configurable screen-width. -->
                                 <dl class="dl-vertical">
                                     <dt>Meaning</dt>
-                                    <dd ng-bind="hkanjiGlyph"></dd>
+                                    <dd ng-bind="kanjidicReadingResults[0].id"></dd>
                                     <dt>Reading</dt>
                                     <!--<dd ng-bind="hkanjiIndexResult.readings.join(', ') || '&nbsp;'"></dd>-->
                                     <!--Just taking the zeroeth kanjidic reading for now.-->
@@ -88,7 +88,7 @@
         <div class="row">
             <div class="
             col-xs-12">
-                <div class="panel panel-default" ng-show="hkanjiGlyph">
+                <div class="panel panel-default" ng-show="kanjidicReadingResults.length">
                     <div class="panel-body">
                         Basic panel example
                     </div>
