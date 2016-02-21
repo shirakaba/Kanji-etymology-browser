@@ -13,7 +13,7 @@ var util = require('util') // a part of node or npm.
 , bodyParser = require('body-parser')
 , sqlite3 = require('sqlite3').verbose() // require('sqlite3') is an object with a property, 'verbose()', that is a callable function.
 , cors = require('cors')
-, Promise = require('bluebird')
+//, Promise = require('bluebird')
 , async = require('async')
 , _ = require('lodash');
 
