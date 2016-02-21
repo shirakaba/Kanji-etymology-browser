@@ -48,36 +48,30 @@
         </div>
 
         <div class="row">
-            <!-- Everything is divided into 12 columns; for small screens, the wide col takes the whole screen width,
-            and the narrow column must re-flow into a new row. -->
             <div class="
             col-xs-12">
                 <!-- 'ng-show' displays this panel only if the search result evaluates as TRUE. -->
                 <div class="panel panel-default" ng-show="kanjidicReadingResults.length">
                     <div class="panel-body">
                         <!-- The panel brings its own padding, so this row is needed to subtract some padding. -->
-                        <!--<div class="row">-->
-                            <div class="
-                            definition-left-column">
-                                <span class="massive" ng-bind="searchQuery"></span>
-                            </div>
-                            <div class="
-                            definition-right-column">
-                                <!-- Was originally dl-horizontal, but reserved too much space by becoming dl-vertical at a non-configurable screen-width. -->
-                                <dl class="dl-vertical">
-                                    <dt>Meaning</dt>
-                                    <dd>To-do</dd>
-                                    <dt>Reading</dt>
-                                    <!--<dd ng-bind="hkanjiIndexResult.readings.join(', ') || '&nbsp;'"></dd>-->
-                                    <dd>
-                                        <!-- ng-repeats can be optimised by 'track by $index', which tracks by the index of the data in the array. -->
-                                        <span ng-repeat="readingIterator in kanjidicReadingResults track by $index">
-                                            <span ng-bind="readingIterator"></span><span ng-hide="$last">,</span>
-                                        </span>
-                                    </dd>
-                                </dl>
-                            </div>
-                        <!--</div>-->
+                        <div class="
+                        definition-left-column">
+                            <span class="massive" ng-bind="searchQuery"></span>
+                        </div>
+                        <div class="
+                        definition-right-column">
+                            <dl class="dl-vertical">
+                                <dt>Meaning</dt>
+                                <dd>To-do</dd>
+                                <dt>Reading</dt>
+                                <dd>
+                                    <!-- ng-repeats can be optimised by 'track by $index', which tracks by the index of the data in the array. -->
+                                    <span ng-repeat="readingIterator in kanjidicReadingResults track by $index">
+                                        <span ng-bind="readingIterator"></span><span ng-hide="$last">,</span>
+                                    </span>
+                                </dd>
+                            </dl>
+                        </div>
                     </div>
                 </div>
             </div>

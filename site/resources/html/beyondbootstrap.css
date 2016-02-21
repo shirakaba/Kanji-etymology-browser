@@ -16,7 +16,6 @@
 }
 
 .definition-right-column {
-    /*float: left;*/
     min-width: 18em;
     overflow: auto;
 }
