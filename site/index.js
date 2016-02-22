@@ -66,9 +66,9 @@ app.get('/html/kanjisearch', function(request, response){
 // Following this guide: www.expressjs.com/en/guide/routing.html
 app.post('/', function(request, response){
 	console.log(request.body.oursearch);
-  
-	// db.prepare("SELECT * FROM henshall_page WHERE hkanji = (?) LIMIT 10", request.body.oursearch)
-	db.prepare("SELECT * FROM henshall_page LIMIT 10")
+
+	db.prepare("SELECT * FROM kanjidic_definition WHERE id = (?) LIMIT 10", request.body.oursearch)
+	// db.prepare("SELECT * FROM henshall_page LIMIT 10")
 	.all(function(err, row){
         //db.each("SELECT " + "\"request.body.oursearch\"" + "FROM henshall_page LIMIT 10", function(err, row){
             if(err){
