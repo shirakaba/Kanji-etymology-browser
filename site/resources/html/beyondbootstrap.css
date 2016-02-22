@@ -1,0 +1,21 @@
+.massive{
+    color:black;
+    /*font-family: "MS PGothic", sans-serif;*/
+    font-family: "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", "メイリオ", Meiryo, Osaka, "ＭＳ Ｐゴシック", "MS PGothic", sans-serif;
+    font-size:18em;
+    line-height: 1em;
+    width: 18em;
+}
+
+.maxdocwidth{
+    max-width: 1000px;
+}
+
+.definition-left-column {
+    float: left;
+}
+
+.definition-right-column {
+    min-width: 18em;
+    overflow: auto;
+}
