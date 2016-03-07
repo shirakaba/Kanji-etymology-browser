@@ -35,7 +35,8 @@ angular.module('kanjiApp', [])
                         sc.hkanjiCodePointOnlyResult = data.hkanjiCodePointSearch || "";
                         //
                         sc.kanjidicReadingResults = data.kanjidicReadingSearch;
-
+                        sc.kanjidicDefinitionResults = data.kanjidicDefinitionSearch;
+                        sc.kanjidicFrequencyResults = data.kanjidicFrequencySearch|| "";
                     });
                 })
                 .fail(function(jqXHR, textStatus, errorThrown) {

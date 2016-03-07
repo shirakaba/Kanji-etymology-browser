@@ -78,7 +78,11 @@
                         definition-right-column">
                             <dl class="dl-vertical">
                                 <dt>Meaning</dt>
-                                <dd>To-do</dd>
+                                <dd>
+                                  <span ng-repeat="readingIterator in kanjidicDefinitionResults track by $index">
+                                      <span ng-bind="readingIterator"></span><span ng-hide="$last">,</span>
+                                  </span>
+                                </dd>
                                 <dt>Reading</dt>
                                 <dd>
                                     <!-- ng-repeats can be optimised by 'track by $index', which tracks by the index of the data in the array. -->
@@ -98,8 +102,20 @@
             col-xs-12">
                 <div class="panel panel-default" ng-show="kanjidicReadingResults.length">
                     <div class="panel-body">
+                        <dl class="dl-horizontal">
+                          <dt>Frequency</dt>
+                          <dd ng-bind="kanjidicFrequencyResults"></dd>
+                        </dl>
+                    </div>
+                </div>
+              </div>
+        </div>
+        <div class="row">
+            <div class="
+            col-xs-12">
+                <div class="panel panel-default" ng-show="kanjidicReadingResults.length">
+                    <div class="panel-body">
                         <p class="h4">Extra information</p>
-
                         <dl class="dl-horizontal">
                             <dt>Henshall page</dt>
                             <dd ng-bind="hkanjiPageOnlyResult"></dd>

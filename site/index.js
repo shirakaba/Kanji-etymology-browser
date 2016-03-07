@@ -95,6 +95,18 @@ app.post('/', function(request, response){
                 // .all returns an array of objects, for when multiple results may be expected.
                 // if there are no results, it just returns an empty array of objects.
                 .all(callback);
+            },
+            //kanjidicDefinitionSearch
+            function(callback) {
+                db.prepare("SELECT data FROM kanjidic_definition WHERE id = (?)", request.body.kanjiglyph)
+                // .all returns an array of objects, for when multiple results may be expected.
+                // if there are no results, it just returns an empty array of objects.
+                .all(callback);
+            },
+            //kanjidicFrequencySearch
+            function(callback) {
+                db.prepare("SELECT data FROM kanjidic_frequency WHERE id = (?) LIMIT 1", request.body.kanjiglyph)
+                .get(callback);
             }
         ],
         function(errs, allResults) {
@@ -116,7 +128,9 @@ app.post('/', function(request, response){
                 "hkanjiCodePointSearch": allResults[2] || {},
                 // '|| {}' not needed because an empty array is truthy already.
                 // _.map is a lodash function to flatten an array of objects like allResults[3] into one field.
-                "kanjidicReadingSearch": _.map(allResults[3], 'data')
+                "kanjidicReadingSearch": _.map(allResults[3], 'data'),
+                "kanjidicDefinitionSearch": _.map(allResults[4], 'data'),
+                "kanjidicFrequencySearch": (allResults[5] || {}).data
             });
         }
     );
