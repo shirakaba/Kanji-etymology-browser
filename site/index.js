@@ -12,7 +12,10 @@ var util = require('util') // a part of node or npm.
 , express = require('express') // this makes the JS VM look for 'express' in the node_modules folder, upon having it run index.js.
 , bodyParser = require('body-parser')
 , sqlite3 = require('sqlite3').verbose() // require('sqlite3') is an object with a property, 'verbose()', that is a callable function.
-, cors = require('cors');
+, cors = require('cors')
+//, Promise = require('bluebird')
+, async = require('async')
+, _ = require('lodash');
 
 var app = express(); // call the mysterious function that we just stored in the variable 'express'.
 
@@ -25,39 +28,39 @@ var db = new sqlite3.Database('../databases/dicts.db', sqlite3.OPEN_READONLY); /
 // if you browse to the root of the web server (localhost:3000), it'll shout "hello world!".
 // **app.get describes what the user will see (what response is made) when visiting a specified URL.**
 
-app.get('/', function(request, response){
-    db.all("SELECT * FROM henshall_page LIMIT 10", function(err, row){
-    //db.each("SELECT * FROM henshall_page LIMIT 10", function(err, row){
-        if(err){
-            console.error(err);
-            return;
-        }
-        /* to write rows into console
-         * console.log(row);
-         * Note: can only send one request to webpage at a time (not LIMIT 10), so need a way to collect them into one
-         * request for display.
-         *  and can only have one response.send. Originally had response.send(row);
-         * var data = JSON.stringify(row, null, "\t");
-         *  formats the data to be sent as code with <pre>
-         * var formatted = util.format("<pre>%s</pre>", data);
-         * response.send(formatted);
-
-         * response.setHeader('Content-Type', 'application/json'); */
-        response.json(row);
-    });
-});
+//app.get('/', function(request, response){
+//    db.all("SELECT * FROM henshall_page LIMIT 10", function(err, entries){
+//    //db.each("SELECT * FROM henshall_page LIMIT 10", function(err, entries){
+//        if(err){
+//            console.error(err);
+//            return;
+//        }
+//        /* to write rows into console
+//         * console.log(entries);
+//         * Note: can only send one request to webpage at a time (not LIMIT 10), so need a way to collect them into one
+//         * request for display.
+//         *  and can only have one response.send. Originally had response.send(entries);
+//         * var data = JSON.stringify(entries, null, "\t");
+//         *  formats the data to be sent as code with <pre>
+//         * var formatted = util.format("<pre>%s</pre>", data);
+//         * response.send(formatted);
+//
+//         * response.setHeader('Content-Type', 'application/json'); */
+//        response.json(entries);
+//    });
+//});
 
 // Good tutorial if we ditch the HTML button: https://scotch.io/tutorials/use-expressjs-to-get-url-and-post-parameters
 // Creating and handling from start to finish: http://www.sitepoint.com/creating-and-handling-forms-in-node-js/
-app.get('/html/kanjisearch', function(request, response){
-        db.each("SELECT * FROM henshall_page LIMIT 10", function(err, row){
+/*app.get('/html/kanjisearch', function(request, response){
+        db.each("SELECT * FROM henshall_page LIMIT 10", function(err, entries){
             if(err){
                 console.error(err);
                 return;
             }
-            response.json(row);
+            response.json(entries);
         });
-});
+});*/
 
 
 // mysql not imported. Ref: http://www.hacksparrow.com/using-mysql-with-node-js.html
@@ -65,21 +68,74 @@ app.get('/html/kanjisearch', function(request, response){
 
 // Following this guide: www.expressjs.com/en/guide/routing.html
 app.post('/', function(request, response){
-	console.log(request.body.oursearch);
+    console.log(request.body.kanjiglyph);
 
-	db.prepare("SELECT * FROM kanjidic_definition WHERE id = (?) LIMIT 10", request.body.oursearch)
-	// db.prepare("SELECT * FROM henshall_page LIMIT 10")
-	.all(function(err, row){
-        //db.each("SELECT " + "\"request.body.oursearch\"" + "FROM henshall_page LIMIT 10", function(err, row){
-            if(err){
+    async.parallel(
+        [
+            //hkanjiPageSearch
+            function(callback) {
+                db.prepare("SELECT page FROM henshall_page WHERE hkanji = (?) LIMIT 1", request.body.kanjiglyph)
+                // .get returns a single object, for when only one result is expected.
+                // if there are no results, they return 'undefined' and throw an error.
+                .get(callback);
+            },
+            //hkanjiIndexSearch
+            function(callback) {
+                db.prepare("SELECT ref FROM henshall_ref WHERE hkanji = (?) LIMIT 1", request.body.kanjiglyph)
+                .get(callback);
+            },
+            //hkanjiCodePointSearch
+            function(callback) {
+                db.prepare("SELECT jis,unicode FROM henshall_codepoint WHERE hkanji = (?) LIMIT 1", request.body.kanjiglyph)
+                .get(callback);
+            },
+            //kanjidicReadingSearch
+            function(callback) {
+                db.prepare("SELECT data FROM kanjidic_reading WHERE id = (?)", request.body.kanjiglyph)
+                // .all returns an array of objects, for when multiple results may be expected.
+                // if there are no results, it just returns an empty array of objects.
+                .all(callback);
+            }
+        ],
+        function(errs, allResults) {
+            if(errs){
                 console.error(err);
                 return;
             }
 
+            console.log(allResults[0]);
+            console.log(allResults[1]);
+            console.log(allResults[2]);
+
+            // allResults is an array holding an object (or array of objects) for each function performed.
             response.json({
-   				"receivedsearch": request.body.oursearch, "row":row
-   			});
-        });
+                "receivedsearch": request.body.kanjiglyph,
+                // '|| {}' returns an empty object if the input is not truthy.
+                "hkanjiPageSearch": (allResults[0] || {}).page,
+                "hkanjiIndexSearch": (allResults[1] || {}).ref,
+                "hkanjiCodePointSearch": allResults[2] || {},
+                // '|| {}' not needed because an empty array is truthy already.
+                // _.map is a lodash function to flatten an array of objects like allResults[3] into one field.
+                "kanjidicReadingSearch": _.map(allResults[3], 'data')
+            });
+        }
+    );
+
+
+
+    //db.prepare("SELECT * FROM henshall_page WHERE hkanji = (?) LIMIT 10", request.body.kanjiglyph)
+    ////db.prepare("SELECT * FROM henshall_page LIMIT 10")
+    //.all(function(err, results2){
+     //   //db.each("SELECT " + "\"request.body.kanjiglyph\"" + "FROM henshall_page LIMIT 10", function(err, row){
+     //       if(err){
+     //           console.error(err);
+     //           return;
+     //       }
+    //
+     //       response.json({
+    //          "receivedsearch": request.body.kanjiglyph, "entries":results2
+    //      });
+     //   });
 });
 
 

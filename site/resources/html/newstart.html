@@ -3,10 +3,11 @@
     <head>
     <!-- Could get better icons from https://fortawesome.github.io/Font-Awesome/icons/ -->
     <!-- See http://getbootstrap.com/css/ . See http://getbootstrap.com/components for free glyphs -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.6/simplex/bootstrap.min.css" integrity="sha256-rgHoMgF45/9e2kvxfvR0KarwQNw5CRqgxbrthGpeUuc= sha512-CGGV53FSdrXrjyGCNk04p+xuna3CbE33n773A0EEmqtcN8W3NaFsR0vSQcbll5dpSS90d3i2Zh3jFX/j46hzJA==" crossorigin="anonymous">
     <link rel="stylesheet" href="beyondbootstrap.css" type="text/css" />
     <link rel="stylesheet" href="bootstrap-overrides.css" type="text/css" />
     <!-- Latest compiled and minified CSS, from http://bootswatch.com/simplex/ -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.6/simplex/bootstrap.min.css" integrity="sha256-rgHoMgF45/9e2kvxfvR0KarwQNw5CRqgxbrthGpeUuc= sha512-CGGV53FSdrXrjyGCNk04p+xuna3CbE33n773A0EEmqtcN8W3NaFsR0vSQcbll5dpSS90d3i2Zh3jFX/j46hzJA==" crossorigin="anonymous">
+
     <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
     <!--[if lt IE 9]>
     <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
@@ -18,21 +19,31 @@
     <title>TOP</title>
 </head>
 <body ng-controller="kanjiListController">
+  <header>
     <div class="container-fluid maxdocwidth">
+      <div class="row">
+          <div class="
+          col-xs-12
+          col-md-12
+          col-lg-12">
+              <p class="h1">Website Name</p>
+          </div>
+      </div>
+  </header>
 
+  <nav>
         <div class="row">
             <div class="
             col-xs-12">
-                <ul class="nav nav-pills">
-                <li role="presentation" class="active"><a href="#">Home</a></li>
-                <li role="presentation"><a href="#">About</a></li>
-                <li role="presentation"><a href="#">How to</a></li>
-                <li role="presentation"><a href="#">Origins</a></li>
-                <li role="presentation"><a href="#">Site map</a></li>
+                <ul class="nav nav-pills orange">
+                <li class="clicked" role="presentation" ><a href="#">Home</a></li>
+                <li class ="default" role="presentation" ><a href="#">About</a></li>
+                <li class ="default" role="presentation" ><a href="#">How to</a></li>
+                <li class ="default" role="presentation" ><a href="#">Origins</a></li>
+                <li class ="default" role="presentation" ><a href="#">Site map</a></li>
                 </ul>
             </div>
         </div>
-
         <div class="row">
             <div class="
             col-xs-12">
@@ -40,12 +51,17 @@
                     <div class="input-group">
                         <input type ="text" ng-model="search" name="query" class="form-control">
                             <span class="input-group-btn">
-                                <button class="btn btn-default" type="submit">Go!</button>
+                                <!--<button class="btn btn-default" type="submit">Go</button>-->
+                                <input type="submit" name = "button1" value = "" class ="btn">
+
                             </span>
                     </div>
                 </form>
             </div>
         </div>
+      </nav>
+
+      <article>
 
         <div class="row">
             <div class="
@@ -100,7 +116,8 @@
                 </div>
             </div>
         </div>
-
+      </article>
+      <footer>
         <div class="row">
             <div class="
             col-xs-12">
@@ -111,6 +128,7 @@
                 </div>
             </div>
         </div>
+      </footer>
 
     </div>
 </body>
