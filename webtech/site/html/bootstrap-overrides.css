@@ -1,0 +1,68 @@
+/* Not overriding anything presently. */
+/*dt {*/
+    /*max-width: 80px;*/
+/*}*/
+/*dd {*/
+    /*margin-left: 100px !important;*/
+/*}*/
+body{
+  width: 100%;
+  min-width:630px;
+  margin:auto;
+}
+
+header, nav, aside, article, footer{
+  width: 90%;
+  margin: auto 5%;
+
+}
+
+form input.btn {
+  display:block;
+  margin:0;
+  padding:0;
+  width: 50px;
+  height: 50px;
+  background-image: url("img/3062.png");
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  background-color: rgb(222, 222, 222);
+  border:none;
+}
+div.input-group, input.form-control{
+  height: 50px;
+}
+nav{
+  margin-top: 10px;
+  margin-bottom: 40px;
+}
+
+
+.orange .clicked a, .orange .clicked a:hover{
+  background-color: #edbb09;
+  color: white;
+}
+
+.orange .default a{
+  background-color: none;
+  color: #edbb09;
+}
+
+.orange .default a:hover{
+  background-color: #d1cccc;
+  color: white;
+}
+dl.dl-horizontal, dl.dl-vertical{
+  font-size: 20px;
+}
+dl.dl-vertical{
+  padding-right: 20px;
+}
+dd{
+  padding-left:30px;
+  text-align: justify;
+}
+
+p.h4{
+  font-size:24px;
+}
