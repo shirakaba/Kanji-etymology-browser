@@ -23,7 +23,7 @@ app.use(cors());
 app.use(bodyParser.json()); // gives our application support for JSON-formatted PUT or POST requests.
 // This app.use line needs to be early in the .js file so that the request.body object gets created.
 
-var db = new sqlite3.Database('../databases/dicts.db', sqlite3.OPEN_READONLY); // gets the file pointer for the database.
+var db = new sqlite3.Database('dicts.db', sqlite3.OPEN_READONLY); // gets the file pointer for the database.
 
 
 // mysql not imported. Ref: http://www.hacksparrow.com/using-mysql-with-node-js.html
