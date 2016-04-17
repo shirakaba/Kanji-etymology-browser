@@ -63,6 +63,7 @@ dd{
   text-align: justify;
 }
 
-p.h4{
+.my-panel-heading{
   font-size:24px;
+  margin-top:0px;
 }
