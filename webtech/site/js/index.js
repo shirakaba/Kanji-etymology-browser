@@ -41,9 +41,27 @@ angular.module('kanjiApp', [])
                         sc.kanjidicJlptResults = data.kanjidicJlptSearch|| "";
                         sc.kanjidicGradeResults = data.kanjidicGradeSearch|| "";
                     });
+
+                    if(sc.kanjidicReadingResults.length){
+                        $(".panel").not(".copyright").slideDown("slow");
+                    }
+                    else{
+                        // $(".panel").not(".copyright").fadeOut();
+                        $(".panel").not(".copyright").hide();
+                    }
+                    
                 })
                 .fail(function(jqXHR, textStatus, errorThrown) {
                     console.error(arguments);
                 });
+
+            
+
         };
     }]);
+
+// $(document).ready(function(){
+//     $("#flip").click(function(){
+//         $("#panel").slideDown("slow");
+//     });
+// });

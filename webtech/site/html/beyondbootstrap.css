@@ -19,3 +19,11 @@
     min-width: 18em;
     overflow: auto;
 }
+
+.panel {
+    display: none;
+}
+
+.copyright {
+    display: block;
+}
