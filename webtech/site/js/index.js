@@ -1,8 +1,25 @@
 angular.module('kanjiApp', ['ngAnimate']) // [''] contains dependencies.
     // by default, angular animates every class, so we need to configure its selection.
-    .config(function($animateProvider){
+    .config(['$animateProvider', function($animateProvider){
         $animateProvider.classNameFilter(/houdini/); // filter for any class containing the string 'houdini'
-    })
+    }])
+
+    // angularJS version of JQuery's slideDown() from http://stackoverflow.com/questions/22659729/modifying-dom-slidedown-slideup-with-angularjs-and-jquery
+    .animation('.houdini', ['$animateCss', function($animateCss) {
+        var NG_HIDE_CLASS = 'ng-hide';
+        return {
+            beforeAddClass: function(element, className, done) {
+                if(className === NG_HIDE_CLASS) {
+                    element.slideUp(done);
+                }
+            },
+            removeClass: function(element, className, done) {
+                if(className === NG_HIDE_CLASS) {
+                    element.hide().slideDown(done);
+                }
+            }
+        }
+    }])
 
     // // Each module can have multiple controllers (ie, to do different actions for different submission forms).
     // .controller('myCtrl', ['$scope', function($scope) {
@@ -11,11 +28,13 @@ angular.module('kanjiApp', ['ngAnimate']) // [''] contains dependencies.
     //  }])
 
     // The '$scope' directive is injected in as a dependency. By mutating the controller's $scope, you can mutate the webpage's view.
-    .controller('kanjiListController', ["$scope", "$animate", function(sc, $animate) {
+    .controller('kanjiListController', ["$scope", "$animate", "$animateCss", function(sc, $animate, $animateCss) {
+        console.log($animateCss);
         sc.search = "生";
         sc.output = "init";
         sc.currentRow = [];
         sc.kanjidicReadingResults = [];
+        sc.hideMe = false;
         // We declare this one only because our ng-show interacts with it. It's more about being explicit for documentation.
         //sc.hkanjiIndexOnlyResult = undefined;
 
@@ -33,20 +52,27 @@ angular.module('kanjiApp', ['ngAnimate']) // [''] contains dependencies.
                 .done(function(data, textStatus, jqXHR) {
                     console.log(data); // logs the incoming data as javascript objects
 //					console.log(JSON.stringify(data, undefined, "  ")); // serialises the JSON to a string to emerge in Chrome console
-                    sc.$apply(function() {
-                        sc.searchQuery = data.receivedsearch;
-                        sc.hkanjiPageOnlyResult = data.hkanjiPageSearch || "";
-                        sc.hkanjiIndexOnlyResult = data.hkanjiIndexSearch || "";
-                        sc.hkanjiCodePointOnlyResult = data.hkanjiCodePointSearch || "";
-                        //
-                        sc.kanjidicReadingResults = data.kanjidicReadingSearch;
-                        sc.kanjidicDefinitionResults = data.kanjidicDefinitionSearch;
-                        sc.kanjidicFrequencyResults = data.kanjidicFrequencySearch|| "";
-                        sc.kanjidicStrokeResults = data.kanjidicStrokeSearch|| "";
-                        sc.kanjidicJlptResults = data.kanjidicJlptSearch|| "";
-                        sc.kanjidicGradeResults = data.kanjidicGradeSearch|| "";
-                    });
+                        sc.$apply(function() {
+                            if(data.kanjidicReadingSearch.length){
+                                sc.hideMe = false;
+                                    sc.searchQuery = data.receivedsearch;
+                                    sc.hkanjiPageOnlyResult = data.hkanjiPageSearch || "";
+                                    sc.hkanjiIndexOnlyResult = data.hkanjiIndexSearch || "";
+                                    sc.hkanjiCodePointOnlyResult = data.hkanjiCodePointSearch || "";
+                                    //
+                                    sc.kanjidicReadingResults = data.kanjidicReadingSearch;
+                                    sc.kanjidicDefinitionResults = data.kanjidicDefinitionSearch;
+                                    sc.kanjidicFrequencyResults = data.kanjidicFrequencySearch|| "";
+                                    sc.kanjidicStrokeResults = data.kanjidicStrokeSearch|| "";
+                                    sc.kanjidicJlptResults = data.kanjidicJlptSearch|| "";
+                                    sc.kanjidicGradeResults = data.kanjidicGradeSearch|| "";
+                            }
+                            else{
+                                sc.hideMe = true;
 
+                            }
+
+                        });
                     // if(sc.kanjidicReadingResults.length){
                     //     $(".panel").not(".copyright").slideDown("slow");
                     //     // $(".panel").not(".copyright").fadeIn("slow");
