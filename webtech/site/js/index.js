@@ -44,9 +44,10 @@ angular.module('kanjiApp', [])
 
                     if(sc.kanjidicReadingResults.length){
                         $(".panel").not(".copyright").slideDown("slow");
+                        // $(".panel").not(".copyright").fadeIn("slow");
                     }
                     else{
-                        // $(".panel").not(".copyright").fadeOut();
+                        $(".panel").not(".copyright").fadeOut("slow");
                         $(".panel").not(".copyright").hide();
                     }
                     
