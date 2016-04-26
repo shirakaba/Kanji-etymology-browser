@@ -22,7 +22,7 @@ angular.module('kanjiApp', ['ngAnimate']) // [''] contains dependencies.
     })
 
     // The '$scope' directive is injected in as a dependency. By mutating the controller's $scope, you can mutate the webpage's view.
-    .controller('kanjiListController', ["$scope", "$animate", function(sc, $animate) {
+    .controller('kanjiListController', ["$scope", function(sc) {
         sc.search = "生";
         sc.output = "init";
         sc.currentRow = [];
@@ -66,21 +66,18 @@ angular.module('kanjiApp', ['ngAnimate']) // [''] contains dependencies.
                             }
 
                         });
+
+                    // The original JQuery version we were using until replacement with AngularJS's slideDown() transitions
                     // if(sc.kanjidicReadingResults.length){
                     //     $(".panel").not(".copyright").slideDown("slow");
-                    //     // $(".panel").not(".copyright").fadeIn("slow");
                     // }
                     // else{
                     //     $(".panel").not(".copyright").fadeOut("slow");
                     //     $(".panel").not(".copyright").hide();
                     // }
-                    
                 })
                 .fail(function(jqXHR, textStatus, errorThrown) {
                     console.error(arguments);
                 });
-
-            
-
         };
     }]);
