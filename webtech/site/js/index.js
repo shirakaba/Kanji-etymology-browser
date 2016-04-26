@@ -5,7 +5,7 @@ angular.module('kanjiApp', ['ngAnimate']) // [''] contains dependencies.
     }])
 
     // angularJS version of JQuery's slideDown() from http://stackoverflow.com/questions/22659729/modifying-dom-slidedown-slideup-with-angularjs-and-jquery
-    .animation('.houdini', ['$animateCss', function($animateCss) {
+    .animation('.houdini', function() {
         var NG_HIDE_CLASS = 'ng-hide';
         return {
             beforeAddClass: function(element, className, done) {
@@ -19,17 +19,10 @@ angular.module('kanjiApp', ['ngAnimate']) // [''] contains dependencies.
                 }
             }
         }
-    }])
-
-    // // Each module can have multiple controllers (ie, to do different actions for different submission forms).
-    // .controller('myCtrl', ['$scope', function($scope) {
-    //  $scope.firstName = "john";
-    //  $scope.lastName = "doe";
-    //  }])
+    })
 
     // The '$scope' directive is injected in as a dependency. By mutating the controller's $scope, you can mutate the webpage's view.
-    .controller('kanjiListController', ["$scope", "$animate", "$animateCss", function(sc, $animate, $animateCss) {
-        console.log($animateCss);
+    .controller('kanjiListController', ["$scope", "$animate", function(sc, $animate) {
         sc.search = "生";
         sc.output = "init";
         sc.currentRow = [];
@@ -91,9 +84,3 @@ angular.module('kanjiApp', ['ngAnimate']) // [''] contains dependencies.
 
         };
     }]);
-
-// $(document).ready(function(){
-//     $("#flip").click(function(){
-//         $("#panel").slideDown("slow");
-//     });
-// });
