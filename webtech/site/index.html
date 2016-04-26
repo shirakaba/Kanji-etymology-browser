@@ -16,20 +16,19 @@
       <script src="//cdnjs.cloudflare.com/ajax/libs/json3/3.3.2/json3.min.js"></script>
       <![endif]-->
       <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
-      <!-- <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-animate.js"></script> -->
-      <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular.min.js"></script>
+      <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script>
+      <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-animate.js"></script>
       <script src="js/index.js"></script>
       <title>TOP</title>
   </head>
 
   <body data-ng-controller="kanjiListController">
     <header>
-      <div class="container-fluid maxdocwidth"></div>
-        <div class="row">
-            <div class="col-xs-12 col-md-12 col-lg-12">
-                <h1>Kanji Learner's Dictionary</h1>
-            </div>
-        </div>
+      <div class="row">
+          <div class="col-xs-12 col-md-12 col-lg-12">
+              <h1>Kanji Learner's Dictionary</h1>
+          </div>
+      </div>
     </header>
 
     <nav>
@@ -61,12 +60,12 @@
       </div>
     </nav>
 
-    <article>
-    <h2 data-ng-show="kanjidicReadingResults.length">Results</h2>
+    <article class="ng-hide houdini" data-ng-show="kanjidicReadingResults.length">
+      <h2>Results</h2>
       <section class="row">
           <div class="col-xs-12">
               <!-- 'data-ng-show' displays this panel only if the search result evaluates as TRUE. -->
-              <div class="panel panel-default" data-ng-show="kanjidicReadingResults.length">
+              <div class="panel panel-default">
                   <div class="panel-body">
                       <!-- The panel brings its own padding, so this row is needed to subtract some padding. -->
                       <div class="definition-left-column">
@@ -97,7 +96,7 @@
 
       <section class="row">
           <div class="col-xs-12">
-              <div class="panel panel-default" data-ng-show="kanjidicReadingResults.length">
+              <div class="panel panel-default">
                   <div class="panel-body">
                       <h3 class="my-panel-heading">Study data</h3>
                       <dl class="dl-horizontal">
@@ -117,7 +116,7 @@
 
       <section class="row">
           <div class="col-xs-12">
-              <div class="panel panel-default" data-ng-show="kanjidicReadingResults.length">
+              <div class="panel panel-default">
                   <div class="panel-body">
                       <h3 class="my-panel-heading">Extra information</h3>
                       <dl class="dl-horizontal">

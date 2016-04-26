@@ -20,10 +20,50 @@
     overflow: auto;
 }
 
-.panel {
+/*.panel {
     display: none;
 }
 
 .copyright {
     display: block;
+}*/
+
+.houdini::-webkit-scrollbar { 
+    display: none; 
+}
+
+.houdini {
+    overflow-x: hidden;
+    overflow-y:scroll;
+    max-height:800px;
+}
+
+/* applies to anything with the class name 'houdini' AND 'ng-animate' */
+.houdini.ng-animate {
+  transition:max-height ease 1.0s;
+  -webkit-transition:max-height ease 1.0s;
+  -ms-transition:max-height ease 1.0s;
+  -moz-transition:max-height ease 1.0s;
+  -o-transition:max-height ease 1.0s;
+}
+
+.houdini.ng-show {
+    /*max-height:9000px;*/
+    /*height:0px;*/
+  /*transform:translateY(0%);
+  -webkit-transform:translateY(0%);
+  -ms-transform:translateY(0%);*/
+  /*transform:translateY(0%);
+  -webkit-transform:translateY(0%);
+  -ms-transform:translateY(0%);*/
+}
+
+.houdini.ng-hide {
+    max-height:0px;
+  /*transform:translateY(100%);
+  -webkit-transform:translateY(100%);
+  -ms-transform:translateY(100%);*/
+/*  transform:height(0px);
+  -webkit-transform:height(0px);
+  -ms-transform:height(0px);*/
 }

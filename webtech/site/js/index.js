@@ -1,12 +1,17 @@
-angular.module('kanjiApp', [])
-    // Each module can have multiple controllers (ie, to do different actions for different submission forms).
-    .controller('myCtrl', ['$scope', function($scope) {
-     $scope.firstName = "john";
-     $scope.lastName = "doe";
-     }])
+angular.module('kanjiApp', ['ngAnimate']) // [''] contains dependencies.
+    // by default, angular animates every class, so we need to configure its selection.
+    .config(function($animateProvider){
+        $animateProvider.classNameFilter(/houdini/); // filter for any class containing the string 'houdini'
+    })
+
+    // // Each module can have multiple controllers (ie, to do different actions for different submission forms).
+    // .controller('myCtrl', ['$scope', function($scope) {
+    //  $scope.firstName = "john";
+    //  $scope.lastName = "doe";
+    //  }])
 
     // The '$scope' directive is injected in as a dependency. By mutating the controller's $scope, you can mutate the webpage's view.
-    .controller('kanjiListController', ["$scope", function(sc) {
+    .controller('kanjiListController', ["$scope", "$animate", function(sc, $animate) {
         sc.search = "生";
         sc.output = "init";
         sc.currentRow = [];
@@ -42,14 +47,14 @@ angular.module('kanjiApp', [])
                         sc.kanjidicGradeResults = data.kanjidicGradeSearch|| "";
                     });
 
-                    if(sc.kanjidicReadingResults.length){
-                        $(".panel").not(".copyright").slideDown("slow");
-                        // $(".panel").not(".copyright").fadeIn("slow");
-                    }
-                    else{
-                        $(".panel").not(".copyright").fadeOut("slow");
-                        $(".panel").not(".copyright").hide();
-                    }
+                    // if(sc.kanjidicReadingResults.length){
+                    //     $(".panel").not(".copyright").slideDown("slow");
+                    //     // $(".panel").not(".copyright").fadeIn("slow");
+                    // }
+                    // else{
+                    //     $(".panel").not(".copyright").fadeOut("slow");
+                    //     $(".panel").not(".copyright").hide();
+                    // }
                     
                 })
                 .fail(function(jqXHR, textStatus, errorThrown) {
