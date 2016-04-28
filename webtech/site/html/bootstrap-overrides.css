@@ -28,6 +28,7 @@ form input.btn {
   background-repeat: no-repeat;
   background-color: rgb(222, 222, 222);
   border:none;
+  border-radius: 0px;
 }
 div.input-group, input.form-control{
   height: 50px;
@@ -37,19 +38,28 @@ nav{
   margin-bottom: 40px;
 }
 
-
+.orange .clicked a, .orange .clicked a:hover, .orange .default a:hover{
+  margin: 0;
+  border:none;
+  border-radius: 0px;
+}
 .orange .clicked a, .orange .clicked a:hover{
   background-color: #edbb09;
   color: white;
 }
+form input.form-control{
+  font-size:20px;
+  border-radius: 0px;
+}
 
-.orange .default a{
+.nav-pills>li+li , .orange .default a {
+  margin:0;
   background-color: none;
   color: #edbb09;
 }
-
 .orange .default a:hover{
   background-color: #d1cccc;
+  margin:0;
   color: white;
 }
 dl.dl-horizontal, dl.dl-vertical{
