@@ -23,7 +23,7 @@ app.use(cors());
 app.use(bodyParser.json()); // gives our application support for JSON-formatted PUT or POST requests.
 // This app.use line needs to be early in the .js file so that the request.body object gets created.
 
-var db = new sqlite3.Database('../databases/dicts.db', sqlite3.OPEN_READONLY); // gets the file pointer for the database.
+var db = new sqlite3.Database('dicts.db', sqlite3.OPEN_READONLY); // gets the file pointer for the database.
 
 
 // mysql not imported. Ref: http://www.hacksparrow.com/using-mysql-with-node-js.html
@@ -118,14 +118,33 @@ app.post('/', function(request, response){
 });
 
 
-// Listens continuously on port 3000
-app.listen(3000, function (){
-   console.log('yo');
-});
+app.use(negotiate);
 
 /* Creates a mapping between your filesystem, and the filesystem you pretend exists.
  * If you ask for the first parameter to be just '', then no extra folder is inserted in front of the 'images' in the URL presented to the user.
  * In this case: We can access file://...site/images/index.html at:
  * http://localhost:3000/index.html
  * Rules that the images folder in site/ needs to be presented in URLs as nothing at all. */
-app.use('', express.static('site'));
+app.use('', express.static('site', { setHeaders: deliverXHTML }));
+
+// Listens continuously on port 3000
+app.listen(3000, function (){
+   console.log('yo');
+});
+
+
+// Check whether the browser accepts XHTML, and record it in the response.
+function negotiate(req, res, next) {
+    var accepts = req.headers.accept.split(",");
+    if (accepts.indexOf("application/xhtml+xml") >= 0) res.acceptsXHTML = true;
+    next();
+}
+
+// Called by express.static.  Delivers response as XHTML when appropriate.
+function deliverXHTML(res, path, stat) {
+    if (ends(path, '.html') && res.acceptsXHTML) {
+        res.header("Content-Type", "application/xhtml+xml");
+    }
+}
+
+function ends(s, x) { return s.indexOf(x, s.length-x.length) >= 0; }

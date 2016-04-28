@@ -1,213 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="en-GB" xml:lang="en-GB" ng-app="kanjiApp">
-    <head>
-    <!-- Could get better icons from https://fortawesome.github.io/Font-Awesome/icons/ -->
-    <!-- See http://getbootstrap.com/css/ . See http://getbootstrap.com/components for free glyphs -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.6/simplex/bootstrap.min.css" integrity="sha256-rgHoMgF45/9e2kvxfvR0KarwQNw5CRqgxbrthGpeUuc= sha512-CGGV53FSdrXrjyGCNk04p+xuna3CbE33n773A0EEmqtcN8W3NaFsR0vSQcbll5dpSS90d3i2Zh3jFX/j46hzJA==" crossorigin="anonymous">
-    <link rel="stylesheet" href="html/beyondbootstrap.css" type="text/css" />
-    <link rel="stylesheet" href="html/bootstrap-overrides.css" type="text/css" />
-    <!-- Latest compiled and minified CSS, from http://bootswatch.com/simplex/ -->
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-GB" xml:lang="en-GB" data-ng-app="kanjiApp">
+  <head>
+      <!-- Could get better icons from https://fortawesome.github.io/Font-Awesome/icons/ -->
+      <!-- See http://getbootstrap.com/css/ . See http://getbootstrap.com/components for free glyphs -->
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.6/simplex/bootstrap.min.css" crossorigin="anonymous" />
+      <link rel="stylesheet" href="html/beyondbootstrap.css" type="text/css" />
+      <link rel="stylesheet" href="html/bootstrap-overrides.css" type="text/css" />
+      <!-- Latest compiled and minified CSS, from http://bootswatch.com/simplex/ -->
 
-    <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
-    <!--[if lt IE 9]>
-    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/json3/3.3.2/json3.min.js"></script>
-    <![endif]-->
-    <script src="//code.jquery.com/jquery-1.12.0.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular.min.js"></script>
-    <script src="../js/top.js"></script>
-    <title>TOP</title>
-</head>
-<body ng-controller="kanjiListController">
-  <header>
-    <div class="container-fluid maxdocwidth">
+      <meta name="viewport" content="width=device-width, initial-scale=1" />
+      <meta charset="UTF-8" />
+      <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+      <script src="//cdnjs.cloudflare.com/ajax/libs/json3/3.3.2/json3.min.js"></script>
+      <![endif]-->
+      <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
+      <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script>
+      <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-animate.js"></script>
+      <script src="js/index.js"></script>
+      <title>TOP</title>
+  </head>
+
+  <body data-ng-controller="kanjiListController">
+    <header>
       <div class="row">
-          <div class="
-          col-xs-12
-          col-md-12
-          col-lg-12">
-<!--
-<svg
-   xmlns:dc="http://purl.org/dc/elements/1.1/"
-   xmlns:cc="http://web.resource.org/cc/"
-   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
-   xmlns:svg="http://www.w3.org/2000/svg"
-   xmlns="http://www.w3.org/2000/svg"
-   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
-   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   id="svg2211"
-   sodipodi:version="0.32"
-   inkscape:version="0.45"
-   width="300"
-   height="300"
-   version="1.0"
-   sodipodi:docbase="/home/michelet/Images"
-   sodipodi:docname="馬-xinshu.gif"
-   sodipodi:modified="true">
-  <metadata
-     id="metadata2216">
-    <rdf:RDF>
-      <cc:Work
-         rdf:about="">
-        <dc:format>image/svg+xml</dc:format>
-        <dc:type
-           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-      </cc:Work>
-    </rdf:RDF>
-  </metadata>
-  <defs
-     id="defs2214" />
-  <sodipodi:namedview
-     inkscape:window-height="941"
-     inkscape:window-width="1269"
-     inkscape:pageshadow="2"
-     inkscape:pageopacity="0.0"
-     guidetolerance="10.0"
-     gridtolerance="10.0"
-     objecttolerance="10.0"
-     borderopacity="1.0"
-     bordercolor="#666666"
-     pagecolor="#ffffff"
-     id="base"
-     inkscape:zoom="1.2633333"
-     inkscape:cx="150"
-     inkscape:cy="124.65022"
-     inkscape:window-x="0"
-     inkscape:window-y="27"
-     inkscape:current-layer="svg2211" />
-  <path
-     style="fill:#000000"
-     d="M 205.69846,283.49652 C 197.33448,268.54781 179.89198,262.84265 167.92801,251.41516 C 162.3175,247.63095 145.21182,235.48095 149.87316,233.42794 C 166.05234,241.97458 183.83122,249.11606 202.32677,249.15515 C 219.56314,247.86959 224.4626,228.22 230.51211,215.13519 C 233.27891,200.4853 245.74272,184.46705 239.1466,169.95184 C 219.42028,159.63488 195.77944,164.10574 175.03934,169.08127 C 161.38483,169.52865 142.7738,179.10686 148.33292,195.14725 C 152.59899,197.16857 171.17239,191.9655 158.18147,188.4638 C 154.09579,180.84533 172.26941,191.33453 177.04226,190.05184 C 191.68081,193.45221 208.39876,195.53582 218.6453,207.82703 C 209.08084,221.79123 190.31553,206.60203 177.42654,205.03742 C 157.67574,201.47065 141.13664,215.64164 126.96151,227.16322 C 112.05688,236.61223 95.881548,227.64177 83.715563,218.74469 C 69.079843,215.87966 59.885678,231.71316 48.198817,238.12761 C 36.511809,251.95023 15.974652,240.5188 14.666252,224.64305 C 15.368135,210.74943 32.155222,226.79488 40.91815,218.77422 C 56.268183,215.19247 71.463562,208.49833 87.450677,209.2742 C 96.845348,210.73851 111.89266,220.35305 118.49035,209.49562 C 112.33625,214.30092 95.508344,204.63494 110.81676,203.91997 C 123.31902,206.14781 139.46716,182.95364 120.36918,183.00917 C 111.32343,185.43196 86.408361,176.35866 100.32406,167.31 C 110.24493,160.38607 137.65505,154.98825 126.69329,139.28647 C 115.0205,148.8099 93.132965,132.34104 105.4985,119.79129 C 114.50957,117.59992 135.3616,106.93506 126.91037,96.952799 C 114.49426,105.27864 95.707954,86.31219 105.31196,74.234584 C 113.49478,65.594188 130.85339,60.730881 130.75763,47.497314 C 129.1777,35.691176 97.122832,30.840606 103.20281,47.32775 C 89.386097,62.421765 95.089599,84.446679 89.042338,102.43801 C 92.301553,117.0008 89.327176,132.51915 89.413482,147.54568 C 86.529769,161.15922 92.832527,179.9397 82.682318,189.91174 C 71.77965,183.80036 66.517479,167.66786 66.310134,155.23419 C 66.889995,134.83248 72.089097,114.85194 72.07277,94.381847 C 73.166705,75.865339 73.167013,56.258622 64.441657,39.367119 C 76.536792,43.691131 91.723208,55.973087 99.957295,38.680288 C 114.2926,26.445286 133.92236,24.404995 151.19761,18.50402 C 165.70138,13.977049 185.69494,17.210182 192.04282,32.632037 C 191.06787,44.337992 160.60505,49.881879 173.1385,63.990081 C 192.19795,64.672534 186.78866,86.328954 172.33068,90.723844 C 162.74391,92.116471 158.54751,111.23782 172.17511,104.28633 C 183.6819,101.51158 209.91497,114.67798 191.26907,124.86747 C 181.16521,133.94815 154.66617,140.08767 158.16388,155.33001 C 170.35865,157.16205 182.68305,150.12973 195.41662,150.30837 C 211.91152,148.72296 228.70931,147.37177 245.17961,149.06041 C 260.84333,152.79823 272.51269,164.72835 282.94025,176.1973 C 289.22527,188.11611 272.20092,195.13672 269.65223,206.09716 C 258.02155,229.98418 250.42331,258.184 227.80549,274.37425 C 221.41068,276.82367 212.56847,291.69736 205.69846,283.49652 z "
-     id="path2220" />
-</svg>
--->
-              <p class="h1">Kanji Learner's Dictionary</p>
+          <div class="col-xs-12 col-md-12 col-lg-12">
+              <h1>Kanji Learner's Dictionary</h1>
           </div>
       </div>
-  </header>
+    </header>
+    <nav>
+      <div class="row">
+          <div class="col-xs-12">
+              <ul class="nav nav-pills orange">
+              <li class="clicked" role="presentation" ><a href="#">Home</a></li>
+              <li class ="default" role="presentation" ><a href="#">About</a></li>
+              <li class ="default" role="presentation" ><a href="#">How to</a></li>
+              <li class ="default" role="presentation" ><a href="#">Origins</a></li>
+              <li class ="default" role="presentation" ><a href="#">Site map</a></li>
+              </ul>
+          </div>
+      </div>
 
-  <nav>
-        <div class="row">
-            <div class="
-            col-xs-12">
-                <ul class="nav nav-pills orange">
-                <li class="clicked" role="presentation" ><a href="#">Home</a></li>
-                <li class ="default" role="presentation" ><a href="#">About</a></li>
-                <li class ="default" role="presentation" ><a href="#">How to</a></li>
-                <li class ="default" role="presentation" ><a href="#">Origins</a></li>
-                <li class ="default" role="presentation" ><a href="#">Site map</a></li>
-                </ul>
-            </div>
-        </div>
-        <div class="row">
-            <div class="
-            col-xs-12">
-                <form ng-submit="submit()">
-                    <div class="input-group">
-                        <input type ="text" ng-model="search" name="query" class="form-control" />
-                            <span class="input-group-btn">
-                                <!--<button class="btn btn-default" type="submit">Go</button>-->
-                                <input type="submit" name = "button1" value = "" class ="btn" />
+      <div class="row">
+          <div class="col-xs-12">
+              <form data-ng-submit="submit()">
+                  <div class="input-group">
+                      <input type ="text" data-ng-model="search" name="query" class="form-control" title="submitbutton"/>
+                          <span class="input-group-btn">
+                              <input type="submit" name = "button1" value = "" class ="btn"/>
+                          </span>
+                  </div>
+              </form>
+          </div>
+      </div>
+    </nav>
 
-                            </span>
-                    </div>
-                </form>
-            </div>
-        </div>
-      </nav>
-
-      <article>
-
-        <div class="row">
-            <div class="
-            col-xs-12">
-                <!-- 'ng-show' displays this panel only if the search result evaluates as TRUE. -->
-                <div class="panel panel-default" ng-show="kanjidicReadingResults.length">
-                    <div class="panel-body">
-                        <!-- The panel brings its own padding, so this row is needed to subtract some padding. -->
-                        <div class="
-                        definition-left-column">
-                            <span class="massive" ng-bind="searchQuery"></span>
-                        </div>
-                        <div class="
-                        definition-right-column">
-                            <dl class="dl-vertical">
-                                <dt>Meaning</dt>
-                                <dd>
-                                  <span ng-repeat="readingIterator in kanjidicDefinitionResults track by $index">
-                                      <span ng-bind="readingIterator"></span><span ng-hide="$last">,&nbsp;&nbsp;</span>
+    <article class="ng-hide houdini" data-ng-show="kanjidicReadingResults.length &amp;&amp; !hideMe">
+      <h2>Results</h2>
+      <section class="row">
+          <div class="col-xs-12">
+              <!-- 'data-ng-show' displays this panel only if the search result evaluates as TRUE. -->
+              <div class="panel panel-default">
+                  <div class="panel-body">
+                      <!-- The panel brings its own padding, so this row is needed to subtract some padding. -->
+                      <div class="definition-left-column">
+                          <span class="massive" data-ng-bind="searchQuery"></span>
+                      </div>
+                      <div class="definition-right-column">
+                      <h3 class="my-panel-heading">Kanji</h3>
+                          <dl class="dl-vertical">
+                              <dt>Meaning</dt>
+                              <dd>
+                                <span data-ng-repeat="readingIterator in kanjidicDefinitionResults track by $index">
+                                    <span data-ng-bind="readingIterator"></span><span data-ng-hide="$last">, </span>
+                                </span>
+                              </dd>
+                              <dt>Reading</dt>
+                              <dd>
+                                  <!-- data-ng-repeats can be optimised by 'track by $index', which tracks by the index of the data in the array. -->
+                                  <span data-ng-repeat="readingIterator in kanjidicReadingResults track by $index">
+                                    <span data-ng-bind="readingIterator"></span><span data-ng-hide="$last">, </span>
                                   </span>
-                                </dd>
-                                <dt>Reading</dt>
-                                <dd>
-                                    <!-- ng-repeats can be optimised by 'track by $index', which tracks by the index of the data in the array. -->
-                                    <span ng-repeat="readingIterator in kanjidicReadingResults track by $index">
-                                      <span ng-bind="readingIterator"></span><span ng-hide="$last">,&nbsp;&nbsp;</span>
-                                    </span>
-                                </dd>
-                            </dl>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <section class="row">
-            <div class="
-            col-xs-12">
-                <div class="panel panel-default" ng-show="kanjidicReadingResults.length">
-                    <div class="panel-body">
-                        <dl class="dl-horizontal">
-                          <dt>Frequency</dt>
-                          <dd ng-bind="kanjidicFrequencyResults"></dd>
-                          <dt>Stroke</dt>
-                          <dd ng-bind="kanjidicStrokeResults"></dd>
-                          <dt>JLPT Level</dt>
-                          <dd ng-bind="kanjidicJlptResults"></dd>
-                          <dt>Grade</dt>
-                          <dd ng-bind="kanjidicGradeResults"></dd>
-                        </dl>
-                    </div>
-                </div>
+                              </dd>
+                          </dl>
+                      </div>
+                  </div>
               </div>
-        </section>
+          </div>
+      </section>
 
-        <div class="row">
-            <div class="
-            col-xs-12">
-                <div class="panel panel-default" ng-show="kanjidicReadingResults.length">
-                    <div class="panel-body">
-                        <p class="h4">Extra information</p>
-                        <dl class="dl-horizontal">
-                            <dt>Henshall page</dt>
-                            <dd ng-bind="hkanjiPageOnlyResult"></dd>
-                            <dt>Henshall index</dt>
-                            <dd ng-bind="hkanjiIndexOnlyResult"></dd>
-                            <!-- Unicode only available 1945 kanji (from Henshall); can be decoded from kanjidic_json (base64), or directly -->
-                            <dt>Unicode</dt>
-                            <dd ng-bind="hkanjiCodePointOnlyResult.unicode"></dd>
-                            <dt>JIS</dt>
-                            <dd ng-bind="hkanjiCodePointOnlyResult.jis"></dd>
-                        </dl>
-
-                    </div>
-                </div>
+      <section class="row">
+          <div class="col-xs-12">
+              <div class="panel panel-default">
+                  <div class="panel-body">
+                      <h3 class="my-panel-heading">Study data</h3>
+                      <dl class="dl-horizontal">
+                        <dt>Frequency</dt>
+                        <dd data-ng-bind="kanjidicFrequencyResults"></dd>
+                        <dt>Stroke</dt>
+                        <dd data-ng-bind="kanjidicStrokeResults"></dd>
+                        <dt>JLPT Level</dt>
+                        <dd data-ng-bind="kanjidicJlptResults"></dd>
+                        <dt>Grade</dt>
+                        <dd data-ng-bind="kanjidicGradeResults"></dd>
+                      </dl>
+                  </div>
+              </div>
             </div>
-        </div>
-      </article>
-      <footer>
-        <div class="row">
-            <div class="
-            col-xs-12">
-                <div class="panel panel-default">
-                    <div class="panel-body">
-                        Copyright information
-                    </div>
-                </div>
-            </div>
-        </div>
-      </footer>
+      </section>
 
-    </div>
-</body>
+      <section class="row">
+          <div class="col-xs-12">
+              <div class="panel panel-default">
+                  <div class="panel-body">
+                      <h3 class="my-panel-heading">Extra information</h3>
+                      <dl class="dl-horizontal">
+                          <dt>Henshall page</dt>
+                          <dd data-ng-bind="hkanjiPageOnlyResult"></dd>
+                          <dt>Henshall index</dt>
+                          <dd data-ng-bind="hkanjiIndexOnlyResult"></dd>
+                          <!-- Unicode only available 1945 kanji (from Henshall); can be decoded from kanjidic_json (base64), or directly -->
+                          <dt>Unicode</dt>
+                          <dd data-ng-bind="hkanjiCodePointOnlyResult.unicode"></dd>
+                          <dt>JIS</dt>
+                          <dd data-ng-bind="hkanjiCodePointOnlyResult.jis"></dd>
+                      </dl>
+                  </div>
+              </div>
+          </div>
+      </section>
+    </article>
+
+    <footer>
+      <div class="row">
+          <div class="col-xs-12">
+              <div class="copyright panel panel-default">
+                  <div class="panel-body">
+                      Copyright information
+                  </div>
+              </div>
+          </div>
+      </div>
+    </footer>
+  </body>
 </html>
