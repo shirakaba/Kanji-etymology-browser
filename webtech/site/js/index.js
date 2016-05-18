@@ -31,10 +31,10 @@ angular.module('kanjiApp', ['ngAnimate']) // [''] contains dependencies.
         // We declare this one only because our ng-show interacts with it. It's more about being explicit for documentation.
         //sc.hkanjiIndexOnlyResult = undefined;
 
-        sc.changeAndSubmit = function(element){
-            sc.search = element.value;
-            // sc.submit();
-        };
+        // sc.changeAndSubmit = function(element){
+        //     sc.search = element.value;
+        //     // sc.submit();
+        // };
 
         sc.submit = function() {
 
