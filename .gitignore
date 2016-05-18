@@ -1,8 +1,10 @@
 .DS_Store
-*.png
+Henshall project/PNG_HQ/*.png
 !001.png
 !002.png
 !003.png
+
+site
 
 databases/JMdict_full.db
 

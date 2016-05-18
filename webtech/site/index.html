@@ -30,7 +30,6 @@
           </div>
       </div>
     </header>
-
     <nav>
       <div class="row">
           <div class="col-xs-12">
@@ -75,14 +74,14 @@
                               <dt>Meaning</dt>
                               <dd>
                                 <span data-ng-repeat="readingIterator in kanjidicDefinitionResults track by $index">
-                                    <span data-ng-bind="readingIterator"></span><span data-ng-hide="$last">,</span>
+                                    <span data-ng-bind="readingIterator"></span><span data-ng-hide="$last">, </span>
                                 </span>
                               </dd>
                               <dt>Reading</dt>
                               <dd>
                                   <!-- data-ng-repeats can be optimised by 'track by $index', which tracks by the index of the data in the array. -->
                                   <span data-ng-repeat="readingIterator in kanjidicReadingResults track by $index">
-                                    <span data-ng-bind="readingIterator"></span><span data-ng-hide="$last">,</span>
+                                    <span data-ng-bind="readingIterator"></span><span data-ng-hide="$last">, </span>
                                   </span>
                               </dd>
                           </dl>
