@@ -1,3 +1,5 @@
+"use strict";
+
 angular.module('kanjiApp', ['ngAnimate']) // [''] contains dependencies.
     // by default, angular animates every class, so we need to configure its selection.
     .config(['$animateProvider', function($animateProvider){
