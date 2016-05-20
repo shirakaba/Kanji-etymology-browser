@@ -13,7 +13,7 @@ body{
   width: 100%;
   min-width:630px;
   margin:auto;
-  background-color: #D8AFDE;
+  background-color: rgba(216, 175, 222, 0.5);
   background-image: url("img/bg2.png");
   background-repeat: no-repeat;
   background-position: center bottom;
@@ -43,7 +43,7 @@ form input.btn {
   background-image: url("svg/MagnifierOptimised.svg");
   background-size: 100% 100%;
   background-repeat: no-repeat;
-  background-color: rgb(222, 222, 222);
+  background-color: lightpink;
   border:none;
   border-radius: 0px;
 }
@@ -62,7 +62,7 @@ nav{
   font-size:18px;
 }
 .orange .clicked a, .orange .clicked a:hover{
-  background-color: #edbb09;
+  background-color: lightpink;
   color: white;
 }
 form input.form-control{
@@ -72,11 +72,12 @@ form input.form-control{
 
 .nav-pills>li+li , .orange .default a {
   margin:0;
-  background-color: none;
-  color: #edbb09;
+  background-color: white;
+  color: lightpink;
+  opacity: 0.90;
 }
 .orange .default a:hover{
-  background-color: #d1cccc;
+  background-color: pink;
   margin:0;
   color: white;
 }
