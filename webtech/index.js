@@ -129,7 +129,7 @@ app.use('', express.static('site', { setHeaders: deliverXHTML }));
 
 // Listens continuously on port 3000
 app.listen(3000, function (){
-   console.log('yo');
+   console.log('Server started. Please navigate to localhost:3000 to view website.');
 });
 
 
