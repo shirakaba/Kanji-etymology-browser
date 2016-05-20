@@ -42,9 +42,9 @@
 
       <div class="row">
           <div class="col-xs-12">
-              <form data-ng-submit="submit()">
+              <form data-ng-submit="submit(mySearch)">
                   <div class="input-group">
-                      <input type ="text" data-ng-model="search" name="query" class="form-control" title="submitbutton"/>
+                      <input type ="text" data-ng-model="mySearch" class="form-control" title="submitbutton"/> <!-- This input field's value is bound to $scope.mySearch -->
                           <span class="input-group-btn">
                               <input type="submit" name = "button1" value = "" class ="btn"/>
                           </span>
@@ -132,24 +132,19 @@
 
     <footer>
       <section class="row">
-     <div class="col-xs-12">
-              <div class="copyright panel panel-default">
-                  <div class="panel-body">
-                      Examples
-                      <a data-ng-submit="submit()" value = "太">test</a>
-                      <a href="" id="search-btn" ng-click="submit()">here</a>
-                      <a id="submitMouth" value="口" ng-click="changeAndSubmit()" >here</a>
-                  </div>
-              </div>
+        <div class="col-xs-12">
+          <div class="copyright panel panel-default">
+            <div class="panel-body">
+              Examples:
+              <a href="javascript:void(0);" data-ng-click="submit('和')">和</a>
+              <a href="javascript:void(0);" data-ng-click="submit('神')">神</a>
+              <a href="javascript:void(0);" data-ng-click="submit('電')">電</a>
+              <a href="javascript:void(0);" data-ng-click="submit('桜')">桜</a>
+              <a href="javascript:void(0);" data-ng-click="submit('恩')">恩</a>
+              <!-- href referring to a dummy JS call allows hand cursor to appear -->
+            </div>
           </div>
-
-          <div class="col-xs-12">
-              <div class="copyright panel panel-default">
-                  <div class="panel-body">
-                      Copyright Shirakaba and waka-mnA, 2016
-                  </div>
-              </div>
-          </div>
+        </div>
       </section>
     </footer>
   </body>
