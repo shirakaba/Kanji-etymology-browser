@@ -15,8 +15,6 @@ body{
   margin:auto;
   background-color: rgba(216, 175, 222, 0.5);
   background-image: url("img/bg2.png");
-  background-repeat: no-repeat;
-  background-position: center bottom;
 }
 
 .bg{
@@ -99,4 +97,5 @@ dd{
 
 .panel-default{
  border-radius:0px;
+ /*background-color: rgba(255, 255, 255, 0.9);*/
 }
