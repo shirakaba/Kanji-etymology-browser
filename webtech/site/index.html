@@ -19,139 +19,138 @@
   </head>
 
   <body data-ng-controller="kanjiListController">
-    <div class="bg">
-      <header>
-        <div class="row">
-            <div class="col-xs-12 col-md-12 col-lg-12">
-                <h1>Kanji Learner's Dictionary</h1>
-            </div>
-        </div>
-      </header>
-      <nav>
-        <div class="row">
-            <div class="col-xs-12">
-                <ul class="nav nav-pills orange">
-                <li class="clicked" role="presentation" ><a href="#">Home</a></li>
-                <li class ="default" role="presentation" ><a href="about.html">About</a></li>
-                <li class ="default" role="presentation" ><a href="#">How to</a></li>
-                <li class ="default" role="presentation" ><a href="#">Origins</a></li>
-                <li class ="default" role="presentation" ><a href="#">Site map</a></li>
-                </ul>
-            </div>
-        </div>
+    <div class="bg"></div>
+    <header>
+      <div class="row">
+          <div class="col-xs-12 col-md-12 col-lg-12">
+              <h1>Kanji Learner's Dictionary</h1>
+          </div>
+      </div>
+    </header>
+    <nav>
+      <div class="row">
+          <div class="col-xs-12">
+              <ul class="nav nav-pills orange">
+              <li class="clicked" role="presentation" ><a href="#">Home</a></li>
+              <li class ="default" role="presentation" ><a href="about.html">About</a></li>
+              <li class ="default" role="presentation" ><a href="#">How to</a></li>
+              <li class ="default" role="presentation" ><a href="#">Origins</a></li>
+              <li class ="default" role="presentation" ><a href="#">Site map</a></li>
+              </ul>
+          </div>
+      </div>
 
-        <div class="row">
-            <div class="col-xs-12">
-                <form data-ng-submit="submit()">
-                    <div class="input-group">
-                        <input type ="text" data-ng-model="search" name="query" class="form-control" title="submitbutton"/>
-                            <span class="input-group-btn">
-                                <input type="submit" name = "button1" value = "" class ="btn"/>
-                            </span>
-                    </div>
-                </form>
-            </div>
-        </div>
-      </nav>
+      <div class="row">
+          <div class="col-xs-12">
+              <form data-ng-submit="submit()">
+                  <div class="input-group">
+                      <input type ="text" data-ng-model="search" name="query" class="form-control" title="submitbutton"/>
+                          <span class="input-group-btn">
+                              <input type="submit" name = "button1" value = "" class ="btn"/>
+                          </span>
+                  </div>
+              </form>
+          </div>
+      </div>
+    </nav>
 
-      <article class="ng-hide houdini" data-ng-show="kanjidicReadingResults.length &amp;&amp; !hideMe">
-        <h2>Results</h2>
-        <section class="row">
-            <div class="col-xs-12">
-                <!-- 'data-ng-show' displays this panel only if the search result evaluates as TRUE. -->
-                <div class="panel panel-default">
-                    <div class="panel-body">
-                        <!-- The panel brings its own padding, so this row is needed to subtract some padding. -->
-                        <div class="definition-left-column">
-                            <span class="massive" data-ng-bind="searchQuery"></span>
-                        </div>
-                        <div class="definition-right-column">
-                        <h3 class="my-panel-heading">Kanji</h3>
-                            <dl class="dl-vertical">
-                                <dt>Meaning</dt>
-                                <dd>
-                                  <span data-ng-repeat="readingIterator in kanjidicDefinitionResults track by $index">
-                                      <span data-ng-bind="readingIterator"></span><span data-ng-hide="$last">, </span>
+    <article class="ng-hide houdini" data-ng-show="kanjidicReadingResults.length &amp;&amp; !hideMe">
+      <h2>Results</h2>
+      <section class="row">
+          <div class="col-xs-12">
+              <!-- 'data-ng-show' displays this panel only if the search result evaluates as TRUE. -->
+              <div class="panel panel-default">
+                  <div class="panel-body">
+                      <!-- The panel brings its own padding, so this row is needed to subtract some padding. -->
+                      <div class="definition-left-column">
+                          <span class="massive" data-ng-bind="searchQuery"></span>
+                      </div>
+                      <div class="definition-right-column">
+                      <h3 class="my-panel-heading">Kanji</h3>
+                          <dl class="dl-vertical">
+                              <dt>Meaning</dt>
+                              <dd>
+                                <span data-ng-repeat="readingIterator in kanjidicDefinitionResults track by $index">
+                                    <span data-ng-bind="readingIterator"></span><span data-ng-hide="$last">, </span>
+                                </span>
+                              </dd>
+                              <dt>Reading</dt>
+                              <dd>
+                                  <!-- data-ng-repeats can be optimised by 'track by $index', which tracks by the index of the data in the array. -->
+                                  <span data-ng-repeat="readingIterator in kanjidicReadingResults track by $index">
+                                    <span data-ng-bind="readingIterator"></span><span data-ng-hide="$last">, </span>
                                   </span>
-                                </dd>
-                                <dt>Reading</dt>
-                                <dd>
-                                    <!-- data-ng-repeats can be optimised by 'track by $index', which tracks by the index of the data in the array. -->
-                                    <span data-ng-repeat="readingIterator in kanjidicReadingResults track by $index">
-                                      <span data-ng-bind="readingIterator"></span><span data-ng-hide="$last">, </span>
-                                    </span>
-                                </dd>
-                            </dl>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section class="row">
-            <div class="col-xs-12">
-                <div class="panel panel-default">
-                    <div class="panel-body">
-                        <h3 class="my-panel-heading">Study data</h3>
-                        <dl class="dl-horizontal">
-                          <dt>Frequency</dt>
-                          <dd data-ng-bind="kanjidicFrequencyResults"></dd>
-                          <dt>Stroke</dt>
-                          <dd data-ng-bind="kanjidicStrokeResults"></dd>
-                          <dt>JLPT Level</dt>
-                          <dd data-ng-bind="kanjidicJlptResults"></dd>
-                          <dt>Grade</dt>
-                          <dd data-ng-bind="kanjidicGradeResults"></dd>
-                        </dl>
-                    </div>
-                </div>
+                              </dd>
+                          </dl>
+                      </div>
+                  </div>
               </div>
-        </section>
+          </div>
+      </section>
 
-        <section class="row">
-            <div class="col-xs-12">
-                <div class="panel panel-default">
-                    <div class="panel-body">
-                        <h3 class="my-panel-heading">Extra information</h3>
-                        <dl class="dl-horizontal">
-                            <dt>Henshall page</dt>
-                            <dd data-ng-bind="hkanjiPageOnlyResult"></dd>
-                            <dt>Henshall index</dt>
-                            <dd data-ng-bind="hkanjiIndexOnlyResult"></dd>
-                            <!-- Unicode only available 1945 kanji (from Henshall); can be decoded from kanjidic_json (base64), or directly -->
-                            <dt>Unicode</dt>
-                            <dd data-ng-bind="hkanjiCodePointOnlyResult.unicode"></dd>
-                            <dt>JIS</dt>
-                            <dd data-ng-bind="hkanjiCodePointOnlyResult.jis"></dd>
-                        </dl>
-                    </div>
-                </div>
+      <section class="row">
+          <div class="col-xs-12">
+              <div class="panel panel-default">
+                  <div class="panel-body">
+                      <h3 class="my-panel-heading">Study data</h3>
+                      <dl class="dl-horizontal">
+                        <dt>Frequency</dt>
+                        <dd data-ng-bind="kanjidicFrequencyResults"></dd>
+                        <dt>Stroke</dt>
+                        <dd data-ng-bind="kanjidicStrokeResults"></dd>
+                        <dt>JLPT Level</dt>
+                        <dd data-ng-bind="kanjidicJlptResults"></dd>
+                        <dt>Grade</dt>
+                        <dd data-ng-bind="kanjidicGradeResults"></dd>
+                      </dl>
+                  </div>
+              </div>
             </div>
-        </section>
-      </article>
+      </section>
 
-      <footer>
-        <section class="row">
-  <!--      <div class="col-xs-12">
-                <div class="copyright panel panel-default">
-                    <div class="panel-body">
-                        Examples
-                        <a data-ng-submit="submit()" value = "太">test</a>
-                        <a href="" id="search-btn" ng-click="submit()">here</a>
-                        <a id="submitMouth" value="口" ng-click="changeAndSubmit()" >here</a>
-                    </div>
-                </div>
-            </div> -->
+      <section class="row">
+          <div class="col-xs-12">
+              <div class="panel panel-default">
+                  <div class="panel-body">
+                      <h3 class="my-panel-heading">Extra information</h3>
+                      <dl class="dl-horizontal">
+                          <dt>Henshall page</dt>
+                          <dd data-ng-bind="hkanjiPageOnlyResult"></dd>
+                          <dt>Henshall index</dt>
+                          <dd data-ng-bind="hkanjiIndexOnlyResult"></dd>
+                          <!-- Unicode only available 1945 kanji (from Henshall); can be decoded from kanjidic_json (base64), or directly -->
+                          <dt>Unicode</dt>
+                          <dd data-ng-bind="hkanjiCodePointOnlyResult.unicode"></dd>
+                          <dt>JIS</dt>
+                          <dd data-ng-bind="hkanjiCodePointOnlyResult.jis"></dd>
+                      </dl>
+                  </div>
+              </div>
+          </div>
+      </section>
+    </article>
 
-            <div class="col-xs-12">
-                <div class="copyright panel panel-default">
-                    <div class="panel-body">
-                        Copyright Shirakaba and waka-mnA, 2016
-                    </div>
-                </div>
-            </div>
-        </section>
-      </footer>
-    </div>
+    <footer>
+      <section class="row">
+<!--      <div class="col-xs-12">
+              <div class="copyright panel panel-default">
+                  <div class="panel-body">
+                      Examples
+                      <a data-ng-submit="submit()" value = "太">test</a>
+                      <a href="" id="search-btn" ng-click="submit()">here</a>
+                      <a id="submitMouth" value="口" ng-click="changeAndSubmit()" >here</a>
+                  </div>
+              </div>
+          </div> -->
+
+          <div class="col-xs-12">
+              <div class="copyright panel panel-default">
+                  <div class="panel-body">
+                      Copyright Shirakaba and waka-mnA, 2016
+                  </div>
+              </div>
+          </div>
+      </section>
+    </footer>
   </body>
 </html>

@@ -14,22 +14,24 @@ body{
   min-width:630px;
   margin:auto;
   background-color: rgba(216, 175, 222, 0.5);
-  background-image: url("img/bg2.png");
+  /*background-image: url("img/bg2.png");*/
+/*  background-repeat: no-repeat;
+  background-position: center bottom;*/
 }
 
 .bg{
-  /*width: 100%;*/
-  /*min-width:630px;*/
-  /*margin:auto;*/
-  /*background-image: url("img/bg1.png");*/
+  height: 100%;
+  width: 100%;
+  position:fixed;
+  background-image: url("img/bg2.png");
   background-repeat: no-repeat;
   background-position: center bottom;
+  opacity: 0.85;
 }
 
 header, nav, aside, article, footer{
   width: 90%;
   margin: auto 5%;
-
 }
 
 form input.btn {
@@ -97,5 +99,4 @@ dd{
 
 .panel-default{
  border-radius:0px;
- /*background-color: rgba(255, 255, 255, 0.9);*/
 }
