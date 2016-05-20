@@ -25,7 +25,7 @@ angular.module('kanjiApp', ['ngAnimate']) // [''] contains dependencies.
 
     // The '$scope' directive is injected in as a dependency. By mutating the controller's $scope, you can mutate the webpage's view.
     .controller('kanjiListController', ["$scope", function(sc) {
-        sc.search = "生";
+        sc.mySearch = "生"; // the input field's value is bound to the value of this variable.
         sc.output = "init";
         sc.currentRow = [];
         sc.kanjidicReadingResults = [];
@@ -38,13 +38,17 @@ angular.module('kanjiApp', ['ngAnimate']) // [''] contains dependencies.
             sc.submit();
         };*/
 
+
+        sc.submit = function(query) {
+            sc.mySearch = query;
+
         sc.submit = function() {
             $.ajax({
                     url        : "http://127.0.0.1:3000",
                     dataType   : 'json',
                     contentType: 'application/json; charset=UTF-8', // This is the money shot
                     data       : JSON.stringify({
-                        "kanjiglyph": this.search
+                        "kanjiglyph": query
                     }),
                     type       : 'POST' // etc
                 })
