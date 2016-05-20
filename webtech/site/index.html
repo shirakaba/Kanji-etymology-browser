@@ -136,9 +136,17 @@
               <div class="copyright panel panel-default">
                   <div class="panel-body">
                       Examples
-                      <a data-ng-submit="submit()" value = "太">test</a>
+                      <form data-ng-submit="submit()">
+                        <a id="submitbutton" type="submit" data-ng-model="search" name="query"  ng-click="submit()" value = "太">test</a>
+                        <a href='' ng-click="submit()" onclick='document.forms["太"].submit(); return false;'>submit</a>
+
+                        <a href="" onclick="document.getElementById('太').submit()"> test2 </a>
+                        <input type ="text" data-ng-model="search" name="query" class="form-control" title="submitbutton"/>
+                      </form>
+                      <!--<a data-ng-submit="submit()" value = "太">test</a>
                       <a href="" id="search-btn" ng-click="submit()">here</a>
                       <a id="submitMouth" value="口" ng-click="changeAndSubmit()" >here</a>
+                    -->
                   </div>
               </div>
           </div>
