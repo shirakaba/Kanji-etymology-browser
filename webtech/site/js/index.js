@@ -35,7 +35,7 @@ angular.module('kanjiApp', ['ngAnimate']) // [''] contains dependencies.
 
         sc.changeAndSubmit = function(element){
             sc.search = element.value;
-            // sc.submit();
+            sc.submit();
         };
 
         sc.submit() = function() {
