@@ -51,6 +51,7 @@ body{
   opacity: 0.85;
 }
 
+<<<<<<< HEAD
 header{
     width: 90%;
     margin:5% 5% 0 5%;
@@ -64,7 +65,12 @@ nav{
     font-weight:50;
     font-size: 25px;
 }
-aside, article, footer{
+
+p{
+  font-size: 18px;
+}
+
+header, nav, aside, article, footer{
   width: 90%;
   margin: auto 5%;
 }

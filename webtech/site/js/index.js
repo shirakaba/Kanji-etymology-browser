@@ -26,12 +26,9 @@ angular.module('kanjiApp', ['ngAnimate']) // [''] contains dependencies.
     // The '$scope' directive is injected in as a dependency. By mutating the controller's $scope, you can mutate the webpage's view.
     .controller('kanjiListController', ["$scope", function(sc) {
         sc.mySearch = "生"; // the input field's value is bound to the value of this variable.
-        sc.output = "init";
         sc.currentRow = [];
         sc.kanjidicReadingResults = [];
-        sc.hideMe = false;
-        // We declare this one only because our ng-show interacts with it. It's more about being explicit for documentation.
-        //sc.hkanjiIndexOnlyResult = undefined;
+        sc.hideMe = false; // We declare this one only because our ng-show interacts with it. It's more about being explicit for documentation.
 
         // sc.changeAndSubmit = function(element){
         //     sc.search = element.value;
@@ -44,11 +41,11 @@ angular.module('kanjiApp', ['ngAnimate']) // [''] contains dependencies.
             $.ajax({
                     url        : "http://127.0.0.1:3000",
                     dataType   : 'json',
-                    contentType: 'application/json; charset=UTF-8', // This is the money shot
+                    contentType: 'application/json; charset=UTF-8',
                     data       : JSON.stringify({
                         "kanjiglyph": query
                     }),
-                    type       : 'POST' // etc
+                    type       : 'POST'
                 })
                 .done(function(data, textStatus, jqXHR) {
                     console.log(data); // logs the incoming data as javascript objects
@@ -60,7 +57,7 @@ angular.module('kanjiApp', ['ngAnimate']) // [''] contains dependencies.
                                     sc.hkanjiPageOnlyResult = data.hkanjiPageSearch || "";
                                     sc.hkanjiIndexOnlyResult = data.hkanjiIndexSearch || "";
                                     sc.hkanjiCodePointOnlyResult = data.hkanjiCodePointSearch || "";
-                                    //
+
                                     sc.kanjidicReadingResults = data.kanjidicReadingSearch;
                                     sc.kanjidicDefinitionResults = data.kanjidicDefinitionSearch;
                                     sc.kanjidicFrequencyResults = data.kanjidicFrequencySearch|| "";

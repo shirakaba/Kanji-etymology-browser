@@ -8,27 +8,22 @@
 
 
 // npm install [would install everything specified by the package.json, if a package.json were present]
-var util = require('util') // a part of node or npm.
-, express = require('express') // this makes the JS VM look for 'express' in the node_modules folder, upon having it run index.js.
-, bodyParser = require('body-parser')
-, sqlite3 = require('sqlite3').verbose() // require('sqlite3') is an object with a property, 'verbose()', that is a callable function.
-, cors = require('cors')
-//, Promise = require('bluebird')
-, async = require('async')
-, _ = require('lodash');
+var express = require('express') // serves static assets (ie. .html) and answers REST requests eg. POST, PUT, GET.
+// , util = require('util')
+, bodyParser = require('body-parser') // allows you to parse JSON.
+, sqlite3 = require('sqlite3').verbose() // database.
+, cors = require('cors') // makes this backend allow frontend traffic (eg. for AJAX requests) from any domain.
+, async = require('async') // allows composition of multiple async callbacks into one async callback.
+, _ = require('lodash'); // general utility library for doing operations upon collections.
 
-var app = express(); // call the mysterious function that we just stored in the variable 'express'.
-
+var app = express();
 app.use(cors());
 app.use(bodyParser.json()); // gives our application support for JSON-formatted PUT or POST requests.
 // This app.use line needs to be early in the .js file so that the request.body object gets created.
 
-var db = new sqlite3.Database('dicts.db', sqlite3.OPEN_READONLY); // gets the file pointer for the database.
+var db = new sqlite3.Database('dicts.db', sqlite3.OPEN_READONLY);
 
-
-// mysql not imported. Ref: http://www.hacksparrow.com/using-mysql-with-node-js.html
 // sqlite3 nodejs documentation: https://github.com/mapbox/node-sqlite3/wiki/API or https://www.npmjs.com/package/sqlite3
-
 app.post('/', function(request, response){
     console.log(request.body.kanjiglyph);
 
