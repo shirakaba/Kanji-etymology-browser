@@ -30,12 +30,9 @@
     <nav>
       <div class="row">
           <div class="col-xs-12">
-              <ul class="nav nav-pills orange">
+              <ul class="nav nav-pills menuColour">
               <li class="clicked" role="presentation" ><a href="#">Home</a></li>
               <li class ="default" role="presentation" ><a href="about.html">About</a></li>
-              <li class ="default" role="presentation" ><a href="#">How to</a></li>
-              <li class ="default" role="presentation" ><a href="#">Origins</a></li>
-              <li class ="default" role="presentation" ><a href="#">Site map</a></li>
               </ul>
           </div>
       </div>
@@ -55,7 +52,15 @@
     </nav>
 
     <article class="ng-hide houdini" data-ng-show="kanjidicReadingResults.length &amp;&amp; !hideMe">
-      <h2>Results</h2>
+
+      <section class="row result">
+        <div class="col-xs-12">
+            <!-- 'data-ng-show' displays this panel only if the search result evaluates as TRUE. -->
+
+        <h2>Results</h2>
+  </div>
+
+      </section>
       <section class="row">
           <div class="col-xs-12">
               <!-- 'data-ng-show' displays this panel only if the search result evaluates as TRUE. -->
@@ -66,7 +71,7 @@
                           <span class="massive" data-ng-bind="searchQuery"></span>
                       </div>
                       <div class="definition-right-column">
-                      <h3 class="my-panel-heading">Kanji</h3>
+                      <h3 class="my-panel-heading">Kanji Data</h3>
                           <dl class="dl-vertical">
                               <dt>Meaning</dt>
                               <dd>
@@ -136,6 +141,7 @@
           <div class="copyright panel panel-default">
             <div class="panel-body">
               Examples:
+
               <a href="javascript:void(0);" data-ng-click="submit('和')">和</a>
               <a href="javascript:void(0);" data-ng-click="submit('神')">神</a>
               <a href="javascript:void(0);" data-ng-click="submit('電')">電</a>

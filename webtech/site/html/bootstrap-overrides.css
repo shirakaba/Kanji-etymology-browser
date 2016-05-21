@@ -5,13 +5,34 @@
 /*dd {*/
     /*margin-left: 100px !important;*/
 /*}*/
+@import url(https://fonts.googleapis.com/css?family=Poiret+One);
 html {
   min-height: 100%;
 }
 
+h1{
+  font-family:'Poiret One';
+  font-size: 50px;
+  font-weight: bold;
+  padding-left:10px;
+  color:#888888;
+}
+h2{
+  font-size: 24px;
+  font-weight:100;
+  color:#888888;
+  color:white;
+  margin-top:10px;
+  margin-bottom:10px;
+}
+@media screen and (max-width:600px){
+  h1{
+    font-size: 40px;
+  }
+}
 body{
   width: 100%;
-  min-width:630px;
+  min-width:320px;
   margin:auto;
   background-color: rgba(216, 175, 222, 0.5);
   /*background-image: url("img/bg2.png");*/
@@ -30,7 +51,20 @@ body{
   opacity: 0.85;
 }
 
-header, nav, aside, article, footer{
+header{
+    width: 90%;
+    margin:5% 5% 0 5%;
+    opacity:0.9;
+    background-color: rgb(255, 255, 255);
+}
+
+nav{
+    width: 90%;
+    margin:0 auto 10px auto;
+    font-weight:50;
+    font-size: 25px;
+}
+aside, article, footer{
   width: 90%;
   margin: auto 5%;
 }
@@ -51,36 +85,39 @@ form input.btn {
 div.input-group, input.form-control{
   height: 50px;
 }
-nav{
-  margin-top: 10px;
-  margin-bottom: 10px;
-}
 
-.orange .clicked a,.orange .default a, .orange .clicked a:hover, .orange .default a:hover{
+
+.nav-pills>li {
+  width:50%;
+}
+.nav-pills>li+li ,.menuColour .clicked a,.menuColour .default a{
   margin: 0;
   border:none;
   border-radius: 0px;
   font-size:18px;
 }
-.orange .clicked a, .orange .clicked a:hover{
-  background-color: lightpink;
+.menuColour .clicked a, .menuColour .clicked a:hover{
+  background-color: #F5B9B5;
   color: white;
 }
-form input.form-control{
-  font-size:20px;
-  border-radius: 0px;
-}
-
-.nav-pills>li+li , .orange .default a {
-  margin:0;
+ .menuColour .default a {
   background-color: white;
   color: lightpink;
   opacity: 0.90;
 }
-.orange .default a:hover{
+.menuColour .default a:hover{
   background-color: pink;
-  margin:0;
   color: white;
+}
+
+form input.form-control{
+  font-size:20px;
+  border-radius: 0px;
+}
+.result{
+  background-color:rgba(245, 185, 181, 0.9);
+  margin-bottom:5px;
+  padding-left:20px;
 }
 dl.dl-horizontal, dl.dl-vertical{
   font-size: 20px;
@@ -88,11 +125,21 @@ dl.dl-horizontal, dl.dl-vertical{
 dl.dl-vertical{
   padding-right: 20px;
 }
+dt{
+  font-weight:normal;
+  color:#505050;
+}
 dd{
   padding-left:30px;
   text-align: justify;
 }
-
+.dl-horizontal dt{
+  position:absolute;
+  width:180px;
+}
+.dl-horizontal dd{
+  padding-left:180px;
+}
 .my-panel-heading{
   font-size:24px;
   margin-top:0px;
