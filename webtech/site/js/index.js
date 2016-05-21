@@ -1,10 +1,22 @@
 "use strict";
 
-angular.module('kanjiApp', ['ngAnimate']) // [''] contains dependencies.
+angular.module('kanjiApp', ['ngAnimate', 'ui.router']) // [''] contains dependencies.
     // by default, angular animates every class, so we need to configure its selection.
-    .config(['$animateProvider', function($animateProvider){
-        $animateProvider.classNameFilter(/houdini/); // filter for any class containing the string 'houdini'
-    }])
+    .config(['$animateProvider', '$stateProvider', '$urlRouterProvider',
+        function($animateProvider, $stateProvider, $urlRouterProvider){
+            $urlRouterProvider.otherwise("/search");
+            $animateProvider.classNameFilter(/houdini/); // filter for any class containing the string 'houdini'
+
+            $stateProvider
+            .state('search', {
+                url: "/search",
+                templateUrl: "partials/search.html"
+            })
+            .state('about', {
+                url: "/about",
+                templateUrl: "partials/about.html"
+            });
+        }])
 
     // angularJS version of JQuery's slideDown() from http://stackoverflow.com/questions/22659729/modifying-dom-slidedown-slideup-with-angularjs-and-jquery
     .animation('.houdini', function() {
@@ -24,11 +36,13 @@ angular.module('kanjiApp', ['ngAnimate']) // [''] contains dependencies.
     })
 
     // The '$scope' directive is injected in as a dependency. By mutating the controller's $scope, you can mutate the webpage's view.
-    .controller('kanjiListController', ["$scope", function(sc) {
+    .controller('kanjiListController', ["$scope", "$state", function(sc, $state) {
         sc.mySearch = "生"; // the input field's value is bound to the value of this variable.
         sc.currentRow = [];
         sc.kanjidicReadingResults = [];
         sc.hideMe = false; // We declare this one only because our ng-show interacts with it. It's more about being explicit for documentation.
+
+        sc.$state = $state;
 
         // sc.changeAndSubmit = function(element){
         //     sc.search = element.value;

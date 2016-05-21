@@ -66,6 +66,11 @@ nav{
   border-radius: 0px;
   font-size:18px;
 }
+.nav>li>a:hover, .nav>li>a:focus {
+    text-decoration: initial !important;
+    background-color: pink !important;
+}
+
 .orange .clicked a, .orange .clicked a:hover{
   background-color: lightpink;
   color: white;

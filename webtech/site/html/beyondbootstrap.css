@@ -28,3 +28,7 @@
 .houdini {
     overflow:hidden;
 }
+
+.clicked a {
+    cursor: default !important;
+}

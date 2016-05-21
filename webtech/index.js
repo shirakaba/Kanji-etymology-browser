@@ -1,3 +1,5 @@
+"use strict";
+
 /* npm init [makes package.json]
  * npm install express --save
  * npm install sqlite3 --save
