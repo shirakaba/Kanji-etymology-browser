@@ -128,8 +128,10 @@ form input.form-control{
 
 .result{
   background-color:rgba(245, 185, 181, 0.9);
-  margin-bottom:5px;
   padding-left:20px;
+  margin-bottom:5px;
+  margin-left:0px;
+  margin-right:0px;
 }
 
 dl.dl-horizontal, dl.dl-vertical{
