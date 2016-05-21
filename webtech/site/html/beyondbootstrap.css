@@ -7,6 +7,17 @@
     width: 18em;
 }
 
+.bg{
+  height: 100%;
+  width: 100%;
+  position:fixed;
+  background-image: url("img/bg.png");
+  background-repeat: no-repeat;
+  z-index: -1;
+  background-position: center bottom;
+  opacity: 0.85;
+}
+
 .massiveimg{
     max-width: 18em;
     max-height: 18em;
