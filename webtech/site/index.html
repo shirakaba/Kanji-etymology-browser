@@ -19,101 +19,111 @@
   </head>
 
   <body data-ng-controller="kanjiListController">
+    <!--Background Sakura Image-->
     <div class="bg"></div>
+
+    <!--Header START-->
     <header>
       <div class="row">
-          <div class="col-xs-12 col-md-12 col-lg-12">
-              <h1>Kanji Learner's Dictionary</h1>
-          </div>
+        <div class="col-xs-12 col-md-12 col-lg-12">
+          <h1>Kanji Learner's Dictionary</h1>
+        </div>
       </div>
     </header>
+    <!--Header END-->
+
+    <!--Navigation START-->
     <nav>
+      <!--Menu Bar-->
       <div class="row">
-          <div class="col-xs-12">
-              <ul class="nav nav-pills menuColour">
-              <li class="clicked" role="presentation" ><a href="#">Home</a></li>
-              <li class ="default" role="presentation" ><a href="about.html">About</a></li>
-              </ul>
-          </div>
+        <div class="col-xs-12">
+          <ul class="nav nav-pills menuColour">
+          <li class="clicked" role="presentation" ><a href="#">Home</a></li>
+          <li class ="default" role="presentation" ><a href="about.html">About</a></li>
+          </ul>
+        </div>
       </div>
 
+      <!--Search Bar-->
       <div class="row">
-          <div class="col-xs-12">
-              <form data-ng-submit="submit(mySearch)">
-                  <div class="input-group">
-                      <input type ="text" data-ng-model="mySearch" class="form-control" title="submitbutton"/> <!-- This input field's value is bound to $scope.mySearch -->
-                          <span class="input-group-btn">
-                              <input type="submit" name = "button1" value = "" class ="btn"/>
-                          </span>
-                  </div>
-              </form>
-          </div>
+        <div class="col-xs-12">
+          <form data-ng-submit="submit(mySearch)">
+            <div class="input-group">
+              <input type ="text" data-ng-model="mySearch" class="form-control" title="submitbutton"/> <!-- This input field's value is bound to $scope.mySearch -->
+              <span class="input-group-btn">
+                <input type="submit" name = "button1" value = "" class ="btn"/>
+              </span>
+            </div>
+          </form>
+        </div>
       </div>
     </nav>
+    <!--Navigation END-->
 
+    <!--Body Contents START-->
     <article class="ng-hide houdini" data-ng-show="kanjidicReadingResults.length &amp;&amp; !hideMe">
-
       <section class="row result">
         <div class="col-xs-12">
-            <!-- 'data-ng-show' displays this panel only if the search result evaluates as TRUE. -->
-
+        <!-- 'data-ng-show' displays this panel only if the search result evaluates as TRUE. -->
         <h2>Results</h2>
-  </div>
+        </div>
 
-      </section>
-      <section class="row">
+        <!--Main Information-->
+        </section>
+        <section class="row">
           <div class="col-xs-12">
-              <!-- 'data-ng-show' displays this panel only if the search result evaluates as TRUE. -->
-              <div class="panel panel-default">
-                  <div class="panel-body">
-                      <!-- The panel brings its own padding, so this row is needed to subtract some padding. -->
-                      <div class="definition-left-column">
-                          <span class="massive" data-ng-bind="searchQuery"></span>
-                      </div>
-                      <div class="definition-right-column">
-                      <h3 class="my-panel-heading">Kanji Data</h3>
-                          <dl class="dl-vertical">
-                              <dt>Meaning</dt>
-                              <dd>
-                                <span data-ng-repeat="readingIterator in kanjidicDefinitionResults track by $index">
-                                    <span data-ng-bind="readingIterator"></span><span data-ng-hide="$last">, </span>
-                                </span>
-                              </dd>
-                              <dt>Reading</dt>
-                              <dd>
-                                  <!-- data-ng-repeats can be optimised by 'track by $index', which tracks by the index of the data in the array. -->
-                                  <span data-ng-repeat="readingIterator in kanjidicReadingResults track by $index">
-                                    <span data-ng-bind="readingIterator"></span><span data-ng-hide="$last">, </span>
-                                  </span>
-                              </dd>
-                          </dl>
-                      </div>
-                  </div>
-              </div>
-          </div>
-      </section>
-
-      <section class="row">
-          <div class="col-xs-12">
-              <div class="panel panel-default">
-                  <div class="panel-body">
-                      <h3 class="my-panel-heading">Study data</h3>
-                      <dl class="dl-horizontal">
-                        <dt>Frequency</dt>
-                        <dd data-ng-bind="kanjidicFrequencyResults"></dd>
-                        <dt>Stroke</dt>
-                        <dd data-ng-bind="kanjidicStrokeResults"></dd>
-                        <dt>JLPT Level</dt>
-                        <dd data-ng-bind="kanjidicJlptResults"></dd>
-                        <dt>Grade</dt>
-                        <dd data-ng-bind="kanjidicGradeResults"></dd>
-                      </dl>
-                  </div>
+            <!-- 'data-ng-show' displays this panel only if the search result evaluates as TRUE. -->
+            <div class="panel panel-default">
+              <div class="panel-body">
+                <!-- The panel brings its own padding, so this row is needed to subtract some padding. -->
+                <div class="definition-left-column">
+                  <span class="massive" data-ng-bind="searchQuery"></span>
+                </div>
+                <div class="definition-right-column">
+                  <h3 class="my-panel-heading">Kanji Data</h3>
+                  <dl class="dl-vertical">
+                    <dt>Meaning</dt>
+                    <dd>
+                      <span data-ng-repeat="readingIterator in kanjidicDefinitionResults track by $index">
+                        <span data-ng-bind="readingIterator"></span><span data-ng-hide="$last">, </span>
+                      </span>
+                    </dd>
+                    <dt>Reading</dt>
+                    <dd>
+                      <!-- data-ng-repeats can be optimised by 'track by $index', which tracks by the index of the data in the array. -->
+                      <span data-ng-repeat="readingIterator in kanjidicReadingResults track by $index">
+                        <span data-ng-bind="readingIterator"></span><span data-ng-hide="$last">, </span>
+                      </span>
+                    </dd>
+                  </dl>
+                </div>
               </div>
             </div>
-      </section>
+          </div>
+        </section>
 
-      <section class="row">
+        <!--Sub Information-->
+        <section class="row">
+          <div class="col-xs-12">
+            <div class="panel panel-default">
+              <div class="panel-body">
+                <h3 class="my-panel-heading">Study data</h3>
+                <dl class="dl-horizontal">
+                  <dt>Frequency</dt>
+                  <dd data-ng-bind="kanjidicFrequencyResults"></dd>
+                  <dt>Stroke</dt>
+                  <dd data-ng-bind="kanjidicStrokeResults"></dd>
+                  <dt>JLPT Level</dt>
+                  <dd data-ng-bind="kanjidicJlptResults"></dd>
+                  <dt>Grade</dt>
+                  <dd data-ng-bind="kanjidicGradeResults"></dd>
+                </dl>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="row">
           <div class="col-xs-12">
               <div class="panel panel-default">
                   <div class="panel-body">
@@ -134,7 +144,9 @@
           </div>
       </section>
     </article>
+    <!--Body Contents END-->
 
+    <!--Footer: Some examples...-->
     <footer>
       <section class="row">
         <div class="col-xs-12">
