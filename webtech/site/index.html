@@ -5,8 +5,8 @@
       <meta charset="UTF-8" />
       <meta name="viewport" content="width=device-width, initial-scale=1" />
       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.6/simplex/bootstrap.min.css" crossorigin="anonymous" />
-      <link rel="stylesheet" href="html/beyondbootstrap.css" type="text/css" />
-      <link rel="stylesheet" href="html/bootstrap-overrides.css" type="text/css" />
+      <link rel="stylesheet" href="static/beyondbootstrap.css" type="text/css" />
+      <link rel="stylesheet" href="static/bootstrap-overrides.css" type="text/css" />
       <!--[if lt IE 9]>
       <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
       <script src="//cdnjs.cloudflare.com/ajax/libs/json3/3.3.2/json3.min.js"></script>
@@ -14,12 +14,12 @@
       <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
       <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script>
       <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-animate.js"></script>
-      <script src="js/angular-ui-router.min.js"></script>
-      <script src="js/index.js"></script>
+      <script src="static/js/angular-ui-router.min.js"></script>
+      <script src="static/js/index.js"></script>
       <title>Kanji Learner's Dictionary</title>
   </head>
 
-  <body data-ng-controller="kanjiListController">
+  <body>
     <div class="bg"></div>
     <header>
       <div class="row">
@@ -28,17 +28,17 @@
           </div>
       </div>
     </header>
-    <nav>
+    <nav data-ng-controller="navController">
       <div class="row">
           <div class="col-xs-12">
               <ul class="nav nav-pills orange">
               <li data-ng-class="{
-              'clicked': $state.includes('search'),
-              'default': !$state.includes('search')
+              'clicked': $state.is('search'),
+              'default': !$state.is('search')
               }" role="presentation" ><a data-ui-sref="search">Home</a></li>
               <li data-ng-class ="{
-              'clicked': $state.includes('about'),
-              'default': !$state.includes('about')
+              'clicked': $state.is('about'),
+              'default': !$state.is('about')
               }" role="presentation" ><a data-ui-sref="about">About</a></li>
               </ul>
           </div>
